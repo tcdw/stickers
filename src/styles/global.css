@@ -1,0 +1,115 @@
+/* ============================================
+   Design Tokens - 可配置的色彩与风格
+   ============================================ */
+
+:root {
+  /* 主色调 - 粗野主义风格强调 */
+  --color-primary: #1a1a1a;
+  --color-primary-text: #ffffff;
+  
+  /* 强调色 - 用于交互和高亮 */
+  --color-accent: #ff3b30;
+  --color-accent-text: #ffffff;
+  
+  /* 背景色 */
+  --color-bg: #f5f5f0;
+  --color-bg-card: #ffffff;
+  
+  /* 边框 */
+  --color-border: #1a1a1a;
+  --border-width: 3px;
+  
+  /* 间距 */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  
+  /* 最大宽度 */
+  --max-width: 1200px;
+}
+
+/* ============================================
+   字体配置 - ChillRoundF
+   来源: https://github.com/justfont/ChillRoundF
+   ============================================ */
+
+@font-face {
+  font-family: 'ChillRoundF';
+  src: url('/fonts/ChillRoundF.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================
+   全局重置与基础样式
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'ChillRoundF', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* 粗野主义边框按钮样式 */
+.btn-brutal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-primary);
+  color: var(--color-primary-text);
+  border: var(--border-width) solid var(--color-border);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.05s ease, background-color 0.15s ease;
+}
+
+.btn-brutal:hover {
+  transform: translate(-2px, -2px);
+}
+
+.btn-brutal:active {
+  transform: translate(0, 0);
+}
+
+.btn-brutal.accent {
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+}
+
+.btn-brutal:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 粗野主义卡片 */
+.card-brutal {
+  background-color: var(--color-bg-card);
+  border: var(--border-width) solid var(--color-border);
+}
+
+/* 平台占位符样式 */
+.platform-placeholder {
+  background-color: var(--color-bg);
+  border: 2px dashed var(--color-border);
+  opacity: 0.6;
+}

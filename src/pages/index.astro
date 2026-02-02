@@ -1,17 +1,309 @@
 ---
+import '../styles/global.css';
+// 使用 AI 生成的数据文件
+// 如需重新生成，运行: pnpm generate-metadata
+import { stickers, platforms } from '../data/stickers-generated.ts';
 
+const siteTitle = 'Yukino Wan Stickers';
+const siteDescription = '可爱贴纸，一键复制';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={siteDescription} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{siteTitle}</title>
+  <style>
+    /* 页面布局 */
+    .site-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-lg) var(--space-md);
+    }
+
+    /* 头部 */
+    .header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-lg);
+      border-bottom: var(--border-width) solid var(--color-border);
+    }
+
+    .header h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      letter-spacing: -0.02em;
+    }
+
+    .header p {
+      font-size: 1.125rem;
+      opacity: 0.7;
+    }
+
+    /* 平台链接区 */
+    .platforms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .platform-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background-color: var(--color-bg-card);
+      border: var(--border-width) solid var(--color-border);
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: 600;
+      transition: transform 0.05s ease;
+    }
+
+    .platform-btn:hover:not(.disabled) {
+      transform: translate(-2px, -2px);
+      background-color: var(--color-primary);
+      color: var(--color-primary-text);
+    }
+
+    .platform-btn.disabled {
+      background-color: var(--color-bg);
+      border-style: dashed;
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .platform-btn .icon {
+      font-size: 1.25rem;
+    }
+
+    .platform-btn .badge {
+      font-size: 0.75rem;
+      padding: 0.125rem 0.375rem;
+      background-color: var(--color-accent);
+      color: var(--color-accent-text);
+      margin-left: 0.25rem;
+    }
+
+    /* 贴纸网格 - 响应式：移动端2列，桌面端最多4列 */
+    .sticker-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+
+    @media (min-width: 640px) {
+      .sticker-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .sticker-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* 贴纸卡片 */
+    .sticker-card {
+      background-color: var(--color-bg-card);
+      border: var(--border-width) solid var(--color-border);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.05s ease;
+    }
+
+    .sticker-card:hover {
+      transform: translate(-2px, -2px);
+    }
+
+    .sticker-image-wrapper {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-sm);
+      background-color: var(--color-bg);
+      border: 2px solid var(--color-border);
+    }
+
+    .sticker-image-wrapper img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+
+    .sticker-emoji {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .sticker-alt {
+      font-size: 0.875rem;
+      opacity: 0.6;
+      margin-bottom: var(--space-sm);
+      text-align: center;
+    }
+
+    .copy-btn {
+      width: 100%;
+      padding: 0.625rem;
+      background-color: var(--color-primary);
+      color: var(--color-primary-text);
+      border: none;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .copy-btn:hover {
+      background-color: var(--color-accent);
+    }
+
+    .copy-btn:active {
+      transform: scale(0.98);
+    }
+
+    .copy-btn:disabled {
+      background-color: #ccc;
+      cursor: wait;
+    }
+
+    /* 页脚 */
+    .footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: var(--border-width) solid var(--color-border);
+      text-align: center;
+      font-size: 0.875rem;
+      opacity: 0.6;
+    }
+
+    /* 空状态 */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: var(--space-xl);
+      border: var(--border-width) dashed var(--color-border);
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="site-container">
+    <!-- Header -->
+    <header class="header">
+      <h1>🦊 雪狐贴纸</h1>
+      <p>点击复制，随处粘贴</p>
+    </header>
+
+    <!-- Platforms -->
+    <nav class="platforms" aria-label="平台链接">
+      {platforms.map((platform) => (
+        <a
+          href={platform.available ? platform.url : undefined}
+          class={`platform-btn ${!platform.available ? 'disabled' : ''}`}
+          target={platform.available ? '_blank' : undefined}
+          rel={platform.available ? 'noopener noreferrer' : undefined}
+          onclick={!platform.available ? 'return false;' : undefined}
+          aria-disabled={!platform.available}
+        >
+          <span class="icon" aria-hidden="true">{platform.icon}</span>
+          <span>{platform.name}</span>
+          {!platform.available && <span class="badge">敬请期待</span>}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Sticker Grid -->
+    <main>
+      <section aria-label="贴纸列表">
+        <div class="sticker-grid" id="sticker-grid">
+          {stickers.map((sticker) => (
+            <article class="sticker-card" data-sticker-id={sticker.id}>
+              <div class="sticker-image-wrapper">
+                <img
+                  src={`/stickers/${sticker.file}`}
+                  alt={sticker.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="sticker-emoji" aria-hidden="true">
+                {sticker.emoji.join(' ')}
+              </div>
+              <p class="sticker-alt">{sticker.alt}</p>
+              <button
+                class="copy-btn"
+                data-image={`/stickers/${sticker.file}`}
+                data-filename={sticker.file}
+                aria-label={`复制 ${sticker.alt}`}
+              >
+                复制贴纸
+              </button>
+            </article>
+          ))}
+          
+          {stickers.length === 0 && (
+            <div class="empty-state">
+              <p>暂无贴纸，敬请期待 ✨</p>
+            </div>
+          )}
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Made with ❤️ for Yukino Wan</p>
+    </footer>
+  </div>
+
+  <script>
+    import { copySticker, showCopyFeedback } from '../scripts/copy-sticker.ts';
+
+    // 为所有复制按钮绑定事件
+    document.querySelectorAll('.copy-btn').forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        const button = e.currentTarget as HTMLButtonElement;
+        const imageUrl = button.dataset.image;
+        const filename = button.dataset.filename;
+
+        if (!imageUrl || !filename) return;
+
+        // 防止重复点击
+        button.disabled = true;
+        const originalText = button.textContent;
+        button.textContent = '复制中...';
+
+        try {
+          const result = await copySticker(imageUrl, filename);
+          showCopyFeedback(result.message);
+          
+          // 临时显示成功状态
+          button.textContent = result.method === 'image' ? '已复制!' : '已处理';
+          setTimeout(() => {
+            button.textContent = originalText;
+          }, 2000);
+        } catch (error) {
+          showCopyFeedback('操作失败，请重试');
+          button.textContent = '复制贴纸';
+        } finally {
+          button.disabled = false;
+        }
+      });
+    });
+  </script>
+</body>
 </html>
