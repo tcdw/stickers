@@ -1,4 +1,6 @@
 ---
+import Header from '../components/header.astro';
+
 import '../styles/global.css';
 // 使用 AI 生成的数据文件
 // 如需重新生成，运行: pnpm generate-metadata
@@ -17,7 +19,8 @@ const siteDescription = '可爱贴纸，一键复制';
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>{siteTitle}</title>
 </head>
-<body class="min-h-screen bg-bg text-primary">
+<body class="min-h-screen text-primary">
+  <Header />
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Header -->
     <header class="text-center mb-12 pb-8 border-b-brutal border-border">

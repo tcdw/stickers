@@ -5,14 +5,29 @@
    ============================================ */
 
 @theme {
-  /* 颜色 - 粗野主义风格 */
-  --color-primary: var(--color-gray-900);
-  --color-primary-text: #ffffff;
-  --color-accent: var(--color-amber-500);
-  --color-accent-text: #ffffff;
-  --color-bg: #ffffff;
-  --color-bg-card: #ffffff;
-  --color-border: var(--color-sky-500);
+  /* 颜色 - OC 配色 */
+  --color-line-main: #381416;
+  --color-line-secondary: #7d525c;
+  --color-line-cloth: #77341f;
+  --color-hair: #f2f1f7;
+  --color-hair-shadow-1: #c8c2d0;
+  --color-hair-shadow-2: #a197b2;
+  --color-skin: #fdeadb;
+  --color-cloth: #ffa453;
+  --color-cloth-shadow-1: #da6f42;
+  --color-cloth-shadow-2: #b1502d;
+  --color-iris-shadow: #37589a;
+  --color-iris: #197eb2;
+  --color-iris-bright-1: #66dffc;
+  --color-iris-bright-2: #a7f4fa;
+
+  --color-primary: var(--color-line-main);
+  --color-primary-text: var(--color-hair);
+  --color-accent: var(--color-cloth);
+  --color-accent-text: var(--color-line-main);
+  --color-bg: var(--color-hair);
+  --color-bg-card: var(--color-skin);
+  --color-border: var(--color-iris);
 
   /* 字体 */
   --font-family-sans: "ChillRoundF", system-ui, -apple-system, sans-serif;
@@ -31,29 +46,29 @@
   /* 边框宽度 */
   --border-width-brutal: 3px;
 
-  --color-primary-50: var(--color-sky-50);
-  --color-primary-100: var(--color-sky-100);
-  --color-primary-200: var(--color-sky-200);
-  --color-primary-300: var(--color-sky-300);
-  --color-primary-400: var(--color-sky-400);
-  --color-primary-500: var(--color-sky-500);
-  --color-primary-600: var(--color-sky-600);
-  --color-primary-700: var(--color-sky-700);
-  --color-primary-800: var(--color-sky-800);
-  --color-primary-900: var(--color-sky-900);
-  --color-primary-950: var(--color-sky-950);
+  --color-primary-50: var(--color-hair);
+  --color-primary-100: var(--color-hair-shadow-1);
+  --color-primary-200: var(--color-hair-shadow-2);
+  --color-primary-300: var(--color-line-secondary);
+  --color-primary-400: var(--color-line-cloth);
+  --color-primary-500: var(--color-line-main);
+  --color-primary-600: var(--color-line-main);
+  --color-primary-700: var(--color-line-main);
+  --color-primary-800: var(--color-line-main);
+  --color-primary-900: var(--color-line-main);
+  --color-primary-950: var(--color-line-main);
 
-  --color-accent-50: var(--color-amber-50);
-  --color-accent-100: var(--color-amber-100);
-  --color-accent-200: var(--color-amber-200);
-  --color-accent-300: var(--color-amber-300);
-  --color-accent-400: var(--color-amber-400);
-  --color-accent-500: var(--color-amber-500);
-  --color-accent-600: var(--color-amber-600);
-  --color-accent-700: var(--color-amber-700);
-  --color-accent-800: var(--color-amber-800);
-  --color-accent-900: var(--color-amber-900);
-  --color-accent-950: var(--color-amber-950);
+  --color-accent-50: var(--color-skin);
+  --color-accent-100: var(--color-cloth);
+  --color-accent-200: var(--color-cloth-shadow-1);
+  --color-accent-300: var(--color-cloth-shadow-2);
+  --color-accent-400: var(--color-line-cloth);
+  --color-accent-500: var(--color-line-main);
+  --color-accent-600: var(--color-line-main);
+  --color-accent-700: var(--color-line-main);
+  --color-accent-800: var(--color-line-main);
+  --color-accent-900: var(--color-line-main);
+  --color-accent-950: var(--color-line-main);
 }
 
 /* ============================================
@@ -77,6 +92,7 @@ html {
   font-family: var(--font-family-sans);
   background-color: var(--color-bg);
   color: var(--color-primary);
+  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d6d6d6' fill-opacity='0.3' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
 body {
