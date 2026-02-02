@@ -1,33 +1,35 @@
+@import "tailwindcss";
+
 /* ============================================
-   Design Tokens - 可配置的色彩与风格
+   Tailwind CSS v4 Theme Configuration
    ============================================ */
 
-:root {
-  /* 主色调 - 粗野主义风格强调 */
+@theme {
+  /* 颜色 - 粗野主义风格 */
   --color-primary: #1a1a1a;
   --color-primary-text: #ffffff;
-  
-  /* 强调色 - 用于交互和高亮 */
   --color-accent: #ff3b30;
   --color-accent-text: #ffffff;
-  
-  /* 背景色 */
   --color-bg: #f5f5f0;
   --color-bg-card: #ffffff;
-  
-  /* 边框 */
   --color-border: #1a1a1a;
-  --border-width: 3px;
-  
+
+  /* 字体 */
+  --font-family-sans: "ChillRoundF", system-ui, -apple-system, sans-serif;
+  --font-family-display: "ChillRoundF", system-ui, -apple-system, sans-serif;
+
   /* 间距 */
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2rem;
-  --space-xl: 3rem;
-  
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
   /* 最大宽度 */
-  --max-width: 1200px;
+  --max-width-site: 1200px;
+
+  /* 边框宽度 */
+  --border-width-brutal: 3px;
 }
 
 /* ============================================
@@ -36,27 +38,19 @@
    ============================================ */
 
 @font-face {
-  font-family: 'ChillRoundF';
-  src: url('/fonts/ChillRoundF.woff2') format('woff2');
+  font-family: "ChillRoundF";
+  src: url("/fonts/ChillRoundF.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 /* ============================================
-   全局重置与基础样式
+   基础样式
    ============================================ */
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 html {
-  font-family: 'ChillRoundF', system-ui, -apple-system, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+  font-family: var(--font-family-sans);
   background-color: var(--color-bg);
   color: var(--color-primary);
 }
@@ -65,51 +59,62 @@ body {
   min-height: 100vh;
 }
 
-/* 粗野主义边框按钮样式 */
+/* ============================================
+   粗野主义组件类
+   ============================================ */
+
+/* 按钮 - 粗野主义风格 */
 .btn-brutal {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--color-primary);
-  color: var(--color-primary-text);
-  border: var(--border-width) solid var(--color-border);
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.05s ease, background-color 0.15s ease;
+  @apply inline-flex items-center justify-center gap-2;
+  @apply px-6 py-3;
+  @apply bg-primary text-primary-text;
+  @apply border-[3px] border-border;
+  @apply font-semibold cursor-pointer;
+  @apply transition-transform duration-75 ease-out;
 }
 
 .btn-brutal:hover {
-  transform: translate(-2px, -2px);
+  @apply -translate-x-0.5 -translate-y-0.5;
 }
 
 .btn-brutal:active {
-  transform: translate(0, 0);
+  @apply translate-x-0 translate-y-0;
 }
 
 .btn-brutal.accent {
-  background-color: var(--color-accent);
-  color: var(--color-accent-text);
+  @apply bg-accent text-accent-text;
 }
 
 .btn-brutal:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  @apply bg-gray-300 cursor-not-allowed;
   transform: none;
 }
 
-/* 粗野主义卡片 */
+/* 卡片 - 粗野主义风格 */
 .card-brutal {
-  background-color: var(--color-bg-card);
-  border: var(--border-width) solid var(--color-border);
+  @apply bg-bg-card;
+  @apply border-[3px] border-border;
 }
 
-/* 平台占位符样式 */
+/* 平台占位符 */
 .platform-placeholder {
-  background-color: var(--color-bg);
-  border: 2px dashed var(--color-border);
-  opacity: 0.6;
+  @apply bg-bg;
+  @apply border-2 border-dashed border-border;
+  @apply opacity-60;
+}
+
+/* ============================================
+   工具类
+   ============================================ */
+
+/* 站点容器 - 最大宽度居中 */
+.site-container {
+  @apply max-w-[1200px] mx-auto;
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* 贴纸网格 - 响应式 */
+.sticker-grid {
+  @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+  @apply gap-4 md:gap-6;
 }

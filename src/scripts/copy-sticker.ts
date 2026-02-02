@@ -150,22 +150,16 @@ export function showCopyFeedback(message: string): void {
   const toast = document.createElement('div');
   toast.id = 'copy-toast';
   toast.textContent = message;
-  toast.style.cssText = `
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--color-primary);
-    color: var(--color-primary-text);
-    padding: 1rem 2rem;
-    border: var(--border-width) solid var(--color-border);
-    font-family: inherit;
-    font-size: 1rem;
-    z-index: 9999;
-    animation: toast-in 0.2s ease;
+  // 使用 Tailwind CSS 类
+  toast.className = `
+    fixed bottom-8 left-1/2 -translate-x-1/2
+    bg-primary text-primary-text
+    px-8 py-4 border-[3px] border-border
+    text-base z-[9999]
+    animate-[toast-in_0.2s_ease]
   `;
   
-  // 添加动画样式
+  // 添加动画样式（如果尚未添加）
   if (!document.getElementById('toast-animation')) {
     const style = document.createElement('style');
     style.id = 'toast-animation';
