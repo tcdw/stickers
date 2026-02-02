@@ -21,7 +21,7 @@ const siteDescription = '可爱贴纸，一键复制';
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Header -->
     <header class="text-center mb-12 pb-8 border-b-brutal border-border">
-      <h1 class="text-4xl sm:text-5xl font-bold mb-4 tracking-wide">雪乃碗的贴纸</h1>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">雪乃碗的贴纸</h1>
       <p class="text-lg opacity-70">点击复制，随处粘贴</p>
     </header>
 
@@ -55,7 +55,7 @@ const siteDescription = '可爱贴纸，一键复制';
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="sticker-grid">
           {stickers.map((sticker) => (
             <article 
-              class="bg-bg-card border-brutal border-border p-4 md:p-6 flex flex-col items-center transition-transform duration-75 hover:-translate-x-0.5 hover:-translate-y-0.5" 
+              class="bg-bg-card border-brutal border-border p-4 md:p-6 flex flex-col items-center transition-transform duration-75 hover:-translate-x-1 hover:-translate-y-1 rounded-2xl md:rounded-3xl" 
               data-sticker-id={sticker.id}
             >
               <div class="w-full aspect-square flex items-center justify-center mb-4">
@@ -72,7 +72,7 @@ const siteDescription = '可爱贴纸，一键复制';
               </div>
               <p class="text-sm opacity-60 mb-4 text-center">{sticker.alt}</p>
               <button
-                class="w-full py-2.5 bg-primary text-primary-text font-semibold text-sm cursor-pointer transition-colors duration-150 hover:bg-accent active:scale-[0.98] disabled:bg-gray-300 disabled:cursor-wait"
+                class="w-full py-2.5 bg-primary text-primary-text font-semibold text-sm rounded-md cursor-pointer transition-colors duration-150 hover:bg-accent active:scale-[0.98] disabled:bg-gray-300 disabled:cursor-wait"
                 data-image={`/stickers/${sticker.file}`}
                 data-filename={sticker.file}
                 aria-label={`复制 ${sticker.alt}`}

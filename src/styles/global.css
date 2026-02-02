@@ -6,13 +6,13 @@
 
 @theme {
   /* 颜色 - 粗野主义风格 */
-  --color-primary: #1a1a1a;
+  --color-primary: var(--color-gray-900);
   --color-primary-text: #ffffff;
-  --color-accent: #ff3b30;
+  --color-accent: var(--color-amber-500);
   --color-accent-text: #ffffff;
-  --color-bg: #f5f5f0;
+  --color-bg: #ffffff;
   --color-bg-card: #ffffff;
-  --color-border: #1a1a1a;
+  --color-border: var(--color-sky-500);
 
   /* 字体 */
   --font-family-sans: "ChillRoundF", system-ui, -apple-system, sans-serif;
@@ -30,6 +30,30 @@
 
   /* 边框宽度 */
   --border-width-brutal: 3px;
+
+  --color-primary-50: var(--color-sky-50);
+  --color-primary-100: var(--color-sky-100);
+  --color-primary-200: var(--color-sky-200);
+  --color-primary-300: var(--color-sky-300);
+  --color-primary-400: var(--color-sky-400);
+  --color-primary-500: var(--color-sky-500);
+  --color-primary-600: var(--color-sky-600);
+  --color-primary-700: var(--color-sky-700);
+  --color-primary-800: var(--color-sky-800);
+  --color-primary-900: var(--color-sky-900);
+  --color-primary-950: var(--color-sky-950);
+
+  --color-accent-50: var(--color-amber-50);
+  --color-accent-100: var(--color-amber-100);
+  --color-accent-200: var(--color-amber-200);
+  --color-accent-300: var(--color-amber-300);
+  --color-accent-400: var(--color-amber-400);
+  --color-accent-500: var(--color-amber-500);
+  --color-accent-600: var(--color-amber-600);
+  --color-accent-700: var(--color-amber-700);
+  --color-accent-800: var(--color-amber-800);
+  --color-accent-900: var(--color-amber-900);
+  --color-accent-950: var(--color-amber-950);
 }
 
 /* ============================================
@@ -68,7 +92,7 @@ body {
   @apply inline-flex items-center justify-center gap-2;
   @apply px-6 py-3;
   @apply bg-primary text-primary-text;
-  @apply border-[3px] border-border;
+  @apply border-brutal border-border;
   @apply font-semibold cursor-pointer;
   @apply transition-transform duration-75 ease-out;
 }
@@ -93,7 +117,7 @@ body {
 /* 卡片 - 粗野主义风格 */
 .card-brutal {
   @apply bg-bg-card;
-  @apply border-[3px] border-border;
+  @apply border-brutal border-border;
 }
 
 /* 平台占位符 */
@@ -109,7 +133,7 @@ body {
 
 /* 站点容器 - 最大宽度居中 */
 .site-container {
-  @apply max-w-[1200px] mx-auto;
+  @apply max-w-7xl mx-auto;
   @apply px-4 sm:px-6 lg:px-8;
 }
 
