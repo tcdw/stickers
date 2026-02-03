@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
-/* ============================================
-   Tailwind CSS v4 Theme Configuration
-   ============================================ */
-
 @theme {
+  --color-primary-50: #ecfdff;
+  --color-primary-100: #cef7ff;
+  --color-primary-200: #a3edfe;
+  --color-primary-300: #66dffc;
+  --color-primary-400: #1ec6f2;
+  --color-primary-500: #02a9d8;
+  --color-primary-600: #0585b5;
+  --color-primary-700: #0b6c93;
+  --color-primary-800: #135777;
+  --color-primary-900: #144965;
+  --color-primary-950: #072f45;
+
+  --color-accent-50: #fff7ed;
+  --color-accent-100: #ffeed4;
+  --color-accent-200: #ffd9a8;
+  --color-accent-300: #ffbd71;
+  --color-accent-400: #ffa453;
+  --color-accent-500: #fe7711;
+  --color-accent-600: #ef5c07;
+  --color-accent-700: #c64308;
+  --color-accent-800: #9d360f;
+  --color-accent-900: #7e2e10;
+  --color-accent-950: #441406;
+
   /* 颜色 - OC 配色 */
   --color-line-main: #381416;
   --color-line-secondary: #7d525c;
-  --color-line-cloth: #77341f;
+  --color-line-cloth: var(--color-accent-900);
   --color-hair: #f2f1f7;
   --color-hair-shadow-1: #c8c2d0;
   --color-hair-shadow-2: #a197b2;
   --color-skin: #fdeadb;
-  --color-cloth: #ffa453;
-  --color-cloth-shadow-1: #da6f42;
-  --color-cloth-shadow-2: #b1502d;
-  --color-iris-shadow-1: #37589a;
-  --color-iris-shadow-2: #22365e;
-  --color-iris: #197eb2;
-  --color-iris-bright-1: #66dffc;
-  --color-iris-bright-2: #a7f4fa;
+  --color-cloth: var(--color-accent-400);
+  --color-cloth-shadow-1: var(--color-accent-600);
+  --color-cloth-shadow-2: var(--color-accent-800);
+  --color-iris-shadow-1: var(--color-primary-800);
+  --color-iris-shadow-2: var(--color-primary-950);
+  --color-iris: var(--color-primary-600);
+  --color-iris-bright-1: var(--color-primary-300);
+  --color-iris-bright-2: var(--color-primary-100);
 
   --color-primary: var(--color-line-main);
   --color-primary-text: var(--color-hair);
@@ -46,30 +66,6 @@
 
   /* 边框宽度 */
   --border-width-brutal: 2.5px;
-
-  --color-primary-50: var(--color-hair);
-  --color-primary-100: var(--color-hair-shadow-1);
-  --color-primary-200: var(--color-hair-shadow-2);
-  --color-primary-300: var(--color-line-secondary);
-  --color-primary-400: var(--color-line-cloth);
-  --color-primary-500: var(--color-line-main);
-  --color-primary-600: var(--color-line-main);
-  --color-primary-700: var(--color-line-main);
-  --color-primary-800: var(--color-line-main);
-  --color-primary-900: var(--color-line-main);
-  --color-primary-950: var(--color-line-main);
-
-  --color-accent-50: var(--color-skin);
-  --color-accent-100: var(--color-cloth);
-  --color-accent-200: var(--color-cloth-shadow-1);
-  --color-accent-300: var(--color-cloth-shadow-2);
-  --color-accent-400: var(--color-line-cloth);
-  --color-accent-500: var(--color-line-main);
-  --color-accent-600: var(--color-line-main);
-  --color-accent-700: var(--color-line-main);
-  --color-accent-800: var(--color-line-main);
-  --color-accent-900: var(--color-line-main);
-  --color-accent-950: var(--color-line-main);
 }
 
 /* ============================================
