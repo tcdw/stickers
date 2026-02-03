@@ -16,14 +16,15 @@
   --color-cloth: #ffa453;
   --color-cloth-shadow-1: #da6f42;
   --color-cloth-shadow-2: #b1502d;
-  --color-iris-shadow: #37589a;
+  --color-iris-shadow-1: #37589a;
+  --color-iris-shadow-2: #22365e;
   --color-iris: #197eb2;
   --color-iris-bright-1: #66dffc;
   --color-iris-bright-2: #a7f4fa;
 
   --color-primary: var(--color-line-main);
   --color-primary-text: var(--color-hair);
-  --color-accent: var(--color-cloth);
+  --color-accent: var(--color-cloth-shadow-1);
   --color-accent-text: var(--color-line-main);
   --color-bg: var(--color-hair);
   --color-bg-card: var(--color-skin);

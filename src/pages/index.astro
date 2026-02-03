@@ -1,139 +1,174 @@
 ---
-import Header from '../components/header.astro';
+import Header from "../components/header.astro";
 
-import '../styles/global.css';
+import "../styles/global.css";
 // 使用 AI 生成的数据文件
 // 如需重新生成，运行: pnpm generate-metadata
-import { stickers, platforms } from '../data/stickers-generated.ts';
+import { stickers, platforms } from "../data/stickers-generated.ts";
 
-const siteTitle = 'Yukino Wan Stickers';
-const siteDescription = '可爱贴纸，一键复制';
+const siteTitle = "Yukino Wan Stickers";
+const siteDescription = "可爱贴纸，一键复制";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content={siteDescription} />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <title>{siteTitle}</title>
-</head>
-<body class="min-h-screen text-primary">
-  <Header />
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Header -->
-    <header class="text-center mb-12 pb-8 border-b-brutal border-border">
-      <h1 class="text-4xl sm:text-5xl font-bold mb-4">雪乃碗的贴纸</h1>
-      <p class="text-lg opacity-70">点击复制，随处粘贴</p>
-    </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={siteDescription} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{siteTitle}</title>
+  </head>
+  <body class="min-h-screen text-primary">
+    <Header />
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+      <!-- Header -->
+      <header class="text-center mb-12 py-12 border-b-brutal border-border">
+        <h1 class="text-4xl sm:text-5xl font-bold mb-4">雪乃碗的贴纸</h1>
+        <p class="text-lg opacity-70">点击复制，随处贴贴</p>
+      </header>
 
-    <!-- Platforms -->
-    <nav class="flex flex-wrap gap-4 justify-center mb-12" aria-label="平台链接">
-      {platforms.map((platform) => (
-        <a
-          href={platform.available ? platform.url : undefined}
-          class:list={[
-            'inline-flex items-center gap-2 px-5 py-3 bg-bg-card border-brutal border-border font-semibold transition-transform duration-75',
-            'hover:not-disabled:-translate-x-0.5 hover:not-disabled:-translate-y-0.5 hover:not-disabled:bg-primary hover:not-disabled:text-primary-text',
-            { 'bg-bg border-dashed opacity-60 cursor-not-allowed': !platform.available }
-          ]}
-          target={platform.available ? '_blank' : undefined}
-          rel={platform.available ? 'noopener noreferrer' : undefined}
-          onclick={!platform.available ? 'return false;' : undefined}
-          aria-disabled={!platform.available}
-        >
-          <span class="text-xl" aria-hidden="true">{platform.icon}</span>
-          <span>{platform.name}</span>
-          {!platform.available && (
-            <span class="text-xs px-1.5 py-0.5 bg-accent text-accent-text ml-1">敬请期待</span>
-          )}
-        </a>
-      ))}
-    </nav>
-
-    <!-- Sticker Grid -->
-    <main>
-      <section aria-label="贴纸列表">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="sticker-grid">
-          {stickers.map((sticker) => (
-            <article 
-              class="bg-bg-card border-brutal border-border p-4 md:p-6 flex flex-col items-center transition-transform duration-75 hover:-translate-x-1 hover:-translate-y-1 rounded-2xl md:rounded-3xl" 
-              data-sticker-id={sticker.id}
+      <!-- Platforms -->
+      <nav class="flex flex-wrap gap-4 justify-center mb-12" aria-label="平台链接">
+        {
+          platforms.map(platform => (
+            <a
+              href={platform.available ? platform.url : undefined}
+              class:list={[
+                "inline-flex items-center gap-2 px-5 py-3 bg-[#24A1DE] text-white rounded-md font-semibold transition-colors duration-200",
+                "hover:not-disabled:bg-[color-mix(in_srgb,var(--color-white)_25%,#24A1DE)] hover:not-disabled:text-primary-text",
+                { "bg-bg border-dashed opacity-60 cursor-not-allowed": !platform.available },
+              ]}
+              target={platform.available ? "_blank" : undefined}
+              rel={platform.available ? "noopener noreferrer" : undefined}
+              onclick={!platform.available ? "return false;" : undefined}
+              aria-disabled={!platform.available}
             >
-              <div class="w-full aspect-square flex items-center justify-center mb-4">
-                <img
-                  src={`/stickers/${sticker.file}`}
-                  alt={sticker.alt}
-                  loading="lazy"
-                  decoding="async"
-                  class="max-w-full max-h-full object-contain"
-                />
-              </div>
-              <div class="text-2xl mb-2" aria-hidden="true">
-                {sticker.emoji.join(' ')}
-              </div>
-              <p class="text-sm opacity-60 mb-4 text-center">{sticker.alt}</p>
-              <button
-                class="w-full py-2.5 bg-primary text-primary-text font-semibold text-sm rounded-md cursor-pointer transition-colors duration-150 hover:bg-accent active:scale-[0.98] disabled:bg-gray-300 disabled:cursor-wait"
-                data-image={`/stickers/${sticker.file}`}
-                data-filename={sticker.file}
-                aria-label={`复制 ${sticker.alt}`}
-              >
-                复制贴纸
-              </button>
-            </article>
-          ))}
-          
-          {stickers.length === 0 && (
-            <div class="col-span-full text-center py-12 border-brutal border-dashed border-border opacity-60">
-              <p>暂无贴纸，敬请期待 ✨</p>
-            </div>
-          )}
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="mt-12 pt-8 border-t-brutal border-border text-center text-sm opacity-60">
-      <p>Made with ❤️ for Yukino Wan</p>
-    </footer>
-  </div>
-
-  <script>
-    import { copySticker, showCopyFeedback } from '../scripts/copy-sticker.ts';
-
-    // 为所有复制按钮绑定事件
-    document.querySelectorAll('button[data-image]').forEach((btn) => {
-      btn.addEventListener('click', async (e) => {
-        const button = e.currentTarget as HTMLButtonElement;
-        const imageUrl = button.dataset.image;
-        const filename = button.dataset.filename;
-
-        if (!imageUrl || !filename) return;
-
-        // 防止重复点击
-        button.disabled = true;
-        const originalText = button.textContent;
-        button.textContent = '复制中...';
-
-        try {
-          const result = await copySticker(imageUrl, filename);
-          showCopyFeedback(result.message);
-          
-          // 临时显示成功状态
-          button.textContent = result.method === 'image' ? '复制成功了喵' : '已处理';
-          setTimeout(() => {
-            button.textContent = originalText;
-          }, 2000);
-        } catch (error) {
-          showCopyFeedback('操作失败，请重试');
-          button.textContent = '复制贴纸';
-        } finally {
-          button.disabled = false;
+              <span>{platform.name}</span>
+              {!platform.available && (
+                <span class="text-xs px-1.5 py-0.5 bg-accent text-accent-text ml-1">敬请期待</span>
+              )}
+            </a>
+          ))
         }
+      </nav>
+
+      <!-- Sticker Grid -->
+      <main>
+        <section aria-label="贴纸列表">
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="sticker-grid">
+            {
+              stickers.map(sticker => (
+                <div class="relative group" data-sticker-wrapper>
+                  <article
+                    class="relative z-10 bg-bg-card border-brutal border-black p-4 md:p-6 flex flex-col items-center transition-transform duration-150 group-hover:-translate-x-2 group-hover:-translate-y-2 rounded-2xl md:rounded-3xl"
+                    data-sticker-id={sticker.id}
+                  >
+                    <div class="w-full aspect-square flex items-center justify-center mb-4">
+                      <img
+                        src={`/stickers/${sticker.file}`}
+                        alt={sticker.alt}
+                        loading="lazy"
+                        decoding="async"
+                        class="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+                    <div class="text-2xl mb-2" aria-hidden="true">
+                      {sticker.emoji.join(" ")}
+                    </div>
+                    <p class="text-sm opacity-60 mb-4 text-center">{sticker.alt}</p>
+                    <button
+                      class="w-full py-2.5 bg-primary text-primary-text font-semibold text-sm rounded-md cursor-pointer transition-colors duration-200 hover:bg-accent active:scale-[0.98] disabled:bg-gray-300 disabled:cursor-wait"
+                      data-image={`/stickers/${sticker.file}`}
+                      data-filename={sticker.file}
+                      aria-label={`复制 ${sticker.alt}`}
+                    >
+                      复制贴纸
+                    </button>
+                  </article>
+                  <div
+                    class="left-0 top-0 bg-iris p-4 md:p-6 flex flex-col items-center rounded-2xl md:rounded-3xl absolute w-full h-full invisible"
+                    data-sticker-shadow
+                    aria-hidden="true"
+                  />
+                </div>
+              ))
+            }
+
+            {
+              stickers.length === 0 && (
+                <div class="col-span-full text-center py-12 border-brutal border-dashed border-border opacity-60">
+                  <p>暂无贴纸，敬请期待 ✨</p>
+                </div>
+              )
+            }
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="mt-12 pt-8 border-t-brutal border-border text-center text-sm opacity-60">
+        <p>Made with ❤️ for Yukino Wan</p>
+      </footer>
+    </div>
+
+    <script>
+      import { copySticker, showCopyFeedback } from "../scripts/copy-sticker.ts";
+
+      const stickerWrapperShadowHidden = 150;
+
+      // 为所有复制按钮绑定事件
+      document.querySelectorAll("button[data-image]").forEach(btn => {
+        btn.addEventListener("click", async e => {
+          const button = e.currentTarget as HTMLButtonElement;
+          const imageUrl = button.dataset.image;
+          const filename = button.dataset.filename;
+
+          if (!imageUrl || !filename) return;
+
+          // 防止重复点击
+          button.disabled = true;
+          const originalText = button.textContent;
+          button.textContent = "复制中...";
+
+          try {
+            const result = await copySticker(imageUrl, filename);
+            showCopyFeedback(result.message);
+
+            // 临时显示成功状态
+            button.textContent = result.method === "image" ? "复制成功了喵" : "已处理";
+            setTimeout(() => {
+              button.textContent = originalText;
+            }, 2000);
+          } catch (error) {
+            showCopyFeedback("操作失败，请重试");
+            button.textContent = "复制贴纸";
+          } finally {
+            button.disabled = false;
+          }
+        });
       });
-    });
-  </script>
-</body>
+
+      document.querySelectorAll("[data-sticker-wrapper]").forEach(wrapper => {
+        const shadow = wrapper.querySelector("[data-sticker-shadow]") as HTMLDivElement;
+        let shadowTimer: number | null = null;
+
+        wrapper.addEventListener("mouseenter", () => {
+          shadow.classList.remove("invisible");
+          if (shadowTimer) {
+            clearTimeout(shadowTimer);
+          }
+        });
+
+        wrapper.addEventListener("mouseleave", () => {
+          if (shadowTimer) {
+            clearTimeout(shadowTimer);
+          }
+          shadowTimer = window.setTimeout(() => {
+            shadow.classList.add("invisible");
+          }, stickerWrapperShadowHidden);
+        });
+      });
+    </script>
+  </body>
 </html>
