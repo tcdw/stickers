@@ -45,7 +45,7 @@
   --max-width-site: 1200px;
 
   /* 边框宽度 */
-  --border-width-brutal: 3px;
+  --border-width-brutal: 2.5px;
 
   --color-primary-50: var(--color-hair);
   --color-primary-100: var(--color-hair-shadow-1);
