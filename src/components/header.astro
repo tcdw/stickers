@@ -1,2 +1,16 @@
-<header>
+---
+import { Image } from "astro:assets";
+import bannerImage from "../assets/banner.png";
+---
+
+<header class="bg-[linear-gradient(60deg,var(--color-primary-700),var(--color-primary-400))] mb-16">
+  <div class="container h-112 relative flex flex-col justify-center text-white">
+    <h1 class="text-4xl sm:text-6xl font-bold mb-4 sm:mb-6">雪乃碗的贴纸</h1>
+    <p class="text-lg opacity-70">点击复制，随处贴贴</p>
+    <Image
+      src={bannerImage}
+      alt="Site Banner"
+      class="w-[calc(100lvw-8rem)] max-w-112 h-auto absolute right-16 bottom-[-21.5px]"
+    />
+  </div>
 </header>
