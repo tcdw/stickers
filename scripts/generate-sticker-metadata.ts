@@ -7,7 +7,7 @@
  *   npx tsx scripts/generate-sticker-metadata.ts
  *
  * 功能:
- *   - 读取 public/stickers/ 下的所有 PNG 文件
+ *   - 读取 src/assets/stickers/ 下的所有 PNG 文件
  *   - 调用 Gemini Pro 分析图片内容
  *   - 生成 emoji、alt 文本、tags
  *   - 输出到 src/data/stickers-generated.ts
@@ -66,7 +66,7 @@ interface StickerData {
   mood: string;
 }
 
-const STICKERS_DIR = join(process.cwd(), "public", "stickers");
+const STICKERS_DIR = join(process.cwd(), "src", "assets", "stickers");
 const OUTPUT_FILE = join(process.cwd(), "src", "data", "stickers-generated.ts");
 
 /**
@@ -257,7 +257,7 @@ function generateTsFile(stickers: StickerData[]): string {
 export interface Sticker {
   /** 唯一标识符 */
   id: string;
-  /** 图片文件名（位于 public/stickers/ 下） */
+  /** 图片文件名（位于 src/assets/stickers/ 下） */
   file: string;
   /** 对应的 Unicode emoji（1-3个） */
   emoji: string[];

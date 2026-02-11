@@ -12,7 +12,7 @@
 export interface Sticker {
   /** 唯一标识符 */
   id: string;
-  /** 图片文件名（位于 public/stickers/ 下） */
+  /** 图片文件名（位于 src/assets/stickers/ 下） */
   file: string;
   /** 对应的 Unicode emoji（1-3个） */
   emoji: string[];

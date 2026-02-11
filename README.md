@@ -7,7 +7,7 @@
 - **Astro** - 静态站点生成器
 - **Tailwind CSS v4** - CSS 框架
 - **TypeScript** - 类型安全
-- **Vanilla JS** - 简单交互
+- **React (Astro Islands)** - 复制按钮交互
 
 ## 快速开始
 
@@ -32,7 +32,7 @@ pnpm preview
 使用 Gemini Pro 多模态能力自动分析贴纸并生成 metadata：
 
 ```bash
-# 1. 将 PNG 贴纸放入 public/stickers/ 目录
+# 1. 将 PNG 贴纸放入 src/assets/stickers/ 目录
 
 # 2. 设置 API Key（从 Google AI Studio 获取）
 export GOOGLE_GENERATIVE_AI_API_KEY="your-api-key"
@@ -48,8 +48,8 @@ pnpm generate-metadata
 
 ### 方式二：手动添加
 
-1. 将 **PNG** 文件放入 `public/stickers/` 目录
-2. 在 `src/data/stickers.ts` 中添加条目（参考现有示例）：
+1. 将 **PNG** 文件放入 `src/assets/stickers/` 目录
+2. 在 `src/data/stickers-generated.ts` 中添加条目（参考现有示例）：
 
 ```typescript
 {
@@ -148,11 +148,12 @@ Clipboard API 仅在以下环境可用：
 ├── public/
 │   ├── fonts/              # 字体文件
 │   │   └── ChillRoundF.woff2
-│   ├── stickers/           # 贴纸 PNG 资源 (0.png, 1.png...)
 │   └── favicon.svg
 ├── scripts/
 │   └── generate-sticker-metadata.ts  # AI 生成 metadata 脚本
 ├── src/
+│   ├── assets/
+│   │   └── stickers/           # 贴纸 PNG 资源 (0.png, 1.png...)
 │   ├── data/
 │   │   └── stickers-generated.ts  # AI 生成的数据文件
 │   ├── scripts/
