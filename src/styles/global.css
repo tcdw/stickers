@@ -33,7 +33,7 @@
   --color-hair-shadow-1: #c8c2d0;
   --color-hair-shadow-2: #a197b2;
   --color-skin: #fdeadb;
-  --color-cloth: var(--color-accent-400);
+  --color-cloth: var(--color-accent-500);
   --color-cloth-shadow-1: var(--color-accent-600);
   --color-cloth-shadow-2: var(--color-accent-800);
   --color-iris-shadow-1: var(--color-primary-800);
