@@ -122,31 +122,5 @@ const stickersWithImages = stickers.map(sticker => {
       </footer>
     </div>
 
-    <script>
-      const stickerWrapperShadowHidden = 150;
-
-      document.querySelectorAll("[data-sticker-wrapper]").forEach(wrapper => {
-        const shadow = wrapper.querySelector("[data-sticker-shadow]");
-        if (!shadow) return;
-        let shadowTimer = null;
-
-        wrapper.addEventListener("mouseenter", () => {
-          shadow.classList.remove("invisible");
-          if (shadowTimer) {
-            window.clearTimeout(shadowTimer);
-            shadowTimer = null;
-          }
-        });
-
-        wrapper.addEventListener("mouseleave", () => {
-          if (shadowTimer) {
-            window.clearTimeout(shadowTimer);
-          }
-          shadowTimer = window.setTimeout(() => {
-            shadow.classList.add("invisible");
-          }, stickerWrapperShadowHidden);
-        });
-      });
-    </script>
   </body>
 </html>

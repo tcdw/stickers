@@ -4,6 +4,8 @@ import { copySticker, showCopyFeedback } from "../scripts/copy-sticker";
 
 type CopyStatusLabel = "复制贴纸" | "复制中..." | "复制成功了喵" | "已处理";
 
+const shadowHideDelayMs = 150;
+
 interface StickerCardButtonProps {
   id: string;
   imageUrl: string;
@@ -25,12 +27,17 @@ export default function StickerCardButton({
 }: StickerCardButtonProps) {
   const [isCopying, setIsCopying] = useState(false);
   const [statusLabel, setStatusLabel] = useState<CopyStatusLabel>("复制贴纸");
+  const [shadowVisible, setShadowVisible] = useState(false);
   const resetTimerRef = useRef<number | null>(null);
+  const shadowTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     return () => {
       if (resetTimerRef.current !== null) {
         window.clearTimeout(resetTimerRef.current);
+      }
+      if (shadowTimerRef.current !== null) {
+        window.clearTimeout(shadowTimerRef.current);
       }
     };
   }, []);
@@ -63,8 +70,36 @@ export default function StickerCardButton({
     }
   };
 
+  const handleMouseEnter = () => {
+    if (shadowTimerRef.current !== null) {
+      window.clearTimeout(shadowTimerRef.current);
+      shadowTimerRef.current = null;
+    }
+    setShadowVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (shadowTimerRef.current !== null) {
+      window.clearTimeout(shadowTimerRef.current);
+    }
+
+    shadowTimerRef.current = window.setTimeout(() => {
+      setShadowVisible(false);
+      shadowTimerRef.current = null;
+    }, shadowHideDelayMs);
+  };
+
+  const shadowClassName = shadowVisible
+    ? "left-0 top-0 bg-primary-400 p-4 md:p-6 flex flex-col items-center rounded-2xl md:rounded-3xl absolute w-full h-full"
+    : "left-0 top-0 bg-primary-400 p-4 md:p-6 flex flex-col items-center rounded-2xl md:rounded-3xl absolute w-full h-full invisible";
+
   return (
-    <div className="relative group" data-sticker-wrapper>
+    <div
+      className="relative group"
+      data-sticker-wrapper
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <button
         type="button"
         className="relative z-10 w-full bg-white p-4 md:p-6 flex flex-col items-center text-center transition-transform duration-150 group-hover:-translate-x-2.5 group-hover:-translate-y-2.5 rounded-2xl md:rounded-3xl cursor-pointer disabled:cursor-wait disabled:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
@@ -84,11 +119,7 @@ export default function StickerCardButton({
           {statusLabel}
         </span>
       </button>
-      <div
-        className="left-0 top-0 bg-primary-400 p-4 md:p-6 flex flex-col items-center rounded-2xl md:rounded-3xl absolute w-full h-full invisible"
-        data-sticker-shadow
-        aria-hidden="true"
-      />
+      <div className={shadowClassName} data-sticker-shadow aria-hidden="true" />
     </div>
   );
 }
