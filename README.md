@@ -7,7 +7,7 @@
 - **Astro** - 静态站点生成器
 - **Tailwind CSS v4** - CSS 框架
 - **TypeScript** - 类型安全
-- **React (Astro Islands)** - 复制按钮交互
+- **React (Astro Islands)** - 贴纸卡片交互
 
 ## 快速开始
 
