@@ -6,7 +6,7 @@
  *
  * 如需重新生成，请运行:
  *   export GOOGLE_GENERATIVE_AI_API_KEY="your-api-key"
- *   npx tsx scripts/generate-sticker-metadata.ts
+ *   bun run scripts/generate-sticker-metadata.ts
  */
 
 export interface Sticker {
@@ -28,7 +28,7 @@ export const stickers: Sticker[] = [
     file: "0.png",
     emoji: ["🙂", "😊", "✨"],
     alt: "温柔微笑",
-    tags: ["雪乃碗", "YukinoWan", "微笑", "开心", "可爱"],
+    tags: ["微笑", "开心", "可爱"],
   },
   {
     id: "sticker-1",
@@ -49,21 +49,21 @@ export const stickers: Sticker[] = [
     file: "3.png",
     emoji: ["😆", "😄", "🤣"],
     alt: "开怀大笑",
-    tags: ["雪乃碗", "开心", "大笑", "哈哈", "YukinoWan"],
+    tags: ["开心", "大笑", "哈哈", "YukinoWan"],
   },
   {
     id: "sticker-4",
     file: "4.png",
     emoji: ["😂", "🤣", "😆"],
     alt: "笑哭了ww",
-    tags: ["笑哭", "爆笑", "哈哈", "YukinoWan", "好笑"],
+    tags: ["笑哭", "爆笑", "哈哈", "好笑"],
   },
   {
     id: "sticker-5",
     file: "5.png",
     emoji: ["😜", "😋"],
     alt: "调皮吐舌眨眼",
-    tags: ["YukinoWan", "调皮", "卖萌", "略略略", "眨眼"],
+    tags: ["调皮", "卖萌", "略略略", "眨眼"],
   },
   {
     id: "sticker-6",
@@ -105,7 +105,7 @@ export const stickers: Sticker[] = [
     file: "11.png",
     emoji: ["🤭", "🫣", "🫢"],
     alt: "捂嘴偷笑",
-    tags: ["捂嘴", "偷笑", "害羞", "雪乃碗", "可爱"],
+    tags: ["捂嘴", "偷笑", "害羞", "可爱"],
   },
   {
     id: "sticker-12",
@@ -119,14 +119,14 @@ export const stickers: Sticker[] = [
     file: "13.png",
     emoji: ["🥺", "😢", "😟"],
     alt: "委屈巴巴",
-    tags: ["雪乃碗", "委屈", "难过", "可怜", "求求"],
+    tags: ["委屈", "难过", "可怜", "求求"],
   },
   {
     id: "sticker-14",
     file: "14.png",
     emoji: ["😛", "😝", "😜"],
     alt: "调皮吐舌头",
-    tags: ["雪乃碗", "调皮", "卖萌", "略略略", "吐舌"],
+    tags: ["调皮", "卖萌", "略略略", "吐舌"],
   },
   {
     id: "sticker-15",
@@ -140,7 +140,7 @@ export const stickers: Sticker[] = [
     file: "16.png",
     emoji: ["🤕", "🩹"],
     alt: "受伤包扎",
-    tags: ["受伤", "痛", "绷带", "雪乃碗", "可怜"],
+    tags: ["受伤", "痛", "绷带", "可怜"],
   },
   {
     id: "sticker-17",
@@ -154,7 +154,7 @@ export const stickers: Sticker[] = [
     file: "18.png",
     emoji: ["😤", "😠", "😡"],
     alt: "气鼓鼓地嘟嘴",
-    tags: ["雪乃碗", "生气", "嘟嘴", "气鼓鼓", "哼"],
+    tags: ["生气", "嘟嘴", "气鼓鼓", "哼"],
   },
   {
     id: "sticker-19",
@@ -247,23 +247,43 @@ export const stickers: Sticker[] = [
     alt: "与 aoi 贴贴",
     tags: ["拥抱", "贴贴", "抱抱", "安慰", "喜欢"],
   },
+  {
+    id: "sticker-34",
+    file: "34.png",
+    emoji: ["🫂", "🥰", "🤗"],
+    alt: "与 Canmi 贴贴",
+    tags: ["抱抱", "贴贴", "拥抱"],
+  },
+  {
+    id: "sticker-35",
+    file: "35.png",
+    emoji: ["❓", "🤔", "😯"],
+    alt: "感到疑惑",
+    tags: ["疑惑", "问号", "不懂", "什么", "YukinoWan"],
+  },
+  {
+    id: "sticker-36",
+    file: "36.png",
+    emoji: ["🫂", "👀", "🥰"],
+    alt: "与 Zhixiang 贴贴",
+    tags: ["贴贴", "抱抱", "可爱"],
+  },
+  {
+    id: "sticker-37",
+    file: "37.png",
+    emoji: ["💀", "😨", "😰"],
+    alt: "面色发青、生无可恋",
+    tags: ["绝望", "生无可恋", "眼神死", "阴暗"],
+  },
 ];
 
 /**
  * 按情绪分类的贴纸
  */
 export const stickersByMood: Record<string, Sticker[]> = {
-  happy: stickers.filter((s) =>
-    [
-      "sticker-0",
-      "sticker-3",
-      "sticker-4",
-      "sticker-11",
-      "sticker-21",
-    ].includes(s.id),
-  ),
-  excited: stickers.filter((s) => ["sticker-1", "sticker-9"].includes(s.id)),
-  loving: stickers.filter((s) =>
+  happy: stickers.filter(s => ["sticker-0", "sticker-3", "sticker-4", "sticker-11", "sticker-21"].includes(s.id)),
+  excited: stickers.filter(s => ["sticker-1", "sticker-9"].includes(s.id)),
+  loving: stickers.filter(s =>
     [
       "sticker-2",
       "sticker-6",
@@ -276,24 +296,16 @@ export const stickersByMood: Record<string, Sticker[]> = {
       "sticker-29",
       "sticker-32",
       "sticker-33",
+      "sticker-34",
+      "sticker-36",
     ].includes(s.id),
   ),
-  silly: stickers.filter((s) =>
-    [
-      "sticker-5",
-      "sticker-7",
-      "sticker-14",
-      "sticker-22",
-      "sticker-30",
-    ].includes(s.id),
-  ),
-  neutral: stickers.filter((s) => ["sticker-10"].includes(s.id)),
-  surprised: stickers.filter((s) => ["sticker-12"].includes(s.id)),
-  sad: stickers.filter((s) =>
-    ["sticker-13", "sticker-16", "sticker-17", "sticker-31"].includes(s.id),
-  ),
-  confused: stickers.filter((s) => ["sticker-15", "sticker-19"].includes(s.id)),
-  angry: stickers.filter((s) => ["sticker-18"].includes(s.id)),
+  silly: stickers.filter(s => ["sticker-5", "sticker-7", "sticker-14", "sticker-22", "sticker-30"].includes(s.id)),
+  neutral: stickers.filter(s => ["sticker-10"].includes(s.id)),
+  surprised: stickers.filter(s => ["sticker-12"].includes(s.id)),
+  sad: stickers.filter(s => ["sticker-13", "sticker-16", "sticker-17", "sticker-31", "sticker-37"].includes(s.id)),
+  confused: stickers.filter(s => ["sticker-15", "sticker-19", "sticker-35"].includes(s.id)),
+  angry: stickers.filter(s => ["sticker-18"].includes(s.id)),
 };
 
 /**
@@ -312,25 +324,25 @@ export const platforms = [
     url: TELEGRAM_STICKER_URL,
     available: true,
   },
-  // {
-  //   id: "discord",
-  //   name: "Discord",
-  //   icon: "🎮",
-  //   url: "#",
-  //   available: false,
-  // },
-  // {
-  //   id: "whatsapp",
-  //   name: "WhatsApp",
-  //   icon: "💬",
-  //   url: "#",
-  //   available: false,
-  // },
-  // {
-  //   id: "line",
-  //   name: "LINE",
-  //   icon: "📱",
-  //   url: "#",
-  //   available: false,
-  // },
+  {
+    id: "discord",
+    name: "Discord",
+    icon: "🎮",
+    url: "#",
+    available: false,
+  },
+  {
+    id: "whatsapp",
+    name: "WhatsApp",
+    icon: "💬",
+    url: "#",
+    available: false,
+  },
+  {
+    id: "line",
+    name: "LINE",
+    icon: "📱",
+    url: "#",
+    available: false,
+  },
 ] as const;
