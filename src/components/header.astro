@@ -6,14 +6,20 @@ import bannerImage from "../assets/banner.png";
 <header>
   <div class="container pb-8 sm:pb-10 md:pb-12">
     <div
-      class="h-100 relative flex flex-col justify-end bg-gray-100 rounded-b-2xl sm:rounded-b-3xl md:rounded-b-4xl text-gray-700 ps-12 pb-12 banner"
+      class="md:h-100 relative flex flex-col justify-center sm:justify-end bg-gray-100 rounded-b-2xl sm:rounded-b-3xl md:rounded-b-4xl text-gray-700 banner"
     >
-      <h1 class="text-4xl sm:text-6xl font-bold mb-4 sm:mb-6">雪乃碗的贴纸</h1>
-      <p class="text-lg opacity-70">点击复制，随处贴贴</p>
+      <div class:list={["flex flex-col items-center py-16", "md:ps-12 md:pb-12 md:items-start"]}>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">雪乃碗的贴纸</h1>
+        <p class="text-lg opacity-70">点击复制，随处贴贴</p>
+      </div>
       <Image
         src={bannerImage}
         alt="Site Banner"
-        class="w-[calc(100lvw-8rem)] max-w-112 h-auto absolute right-16 bottom-[-21.5px]"
+        class:list={[
+          "w-[calc(100lvw-8rem)] max-w-84 h-auto relative bottom-0 -right-1/2 transform-[translate(-50%,calc(163/2991*100%))]",
+          "md:absolute md:right-16 md:transform-[translate(0,calc(163/2991*100%))]",
+          "lg:max-w-112",
+        ]}
       />
     </div>
   </div>
