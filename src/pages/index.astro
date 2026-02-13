@@ -9,9 +9,6 @@ import "../styles/global.css";
 // 如需重新生成，运行: pnpm generate-metadata
 import { stickers, platforms } from "../data/stickers-generated.ts";
 
-const siteTitle = "Yukino Wan Stickers";
-const siteDescription = "可爱贴纸，一键复制";
-
 const stickerImages = import.meta.glob("../assets/stickers/*.{png,jpg,jpeg}", {
   eager: true,
   import: "default",
@@ -37,9 +34,20 @@ const stickersWithImages = stickers.map(sticker => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={siteDescription} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{siteTitle}</title>
+    <title>雪乃碗的贴纸</title>
+    <meta name="description" content="点击复制，随处贴贴！可爱的雪乃碗表情贴纸合集。" />
+
+    <meta property="og:title" content="雪乃碗的贴纸" />
+    <meta property="og:description" content="点击复制，随处贴贴！可爱的雪乃碗表情贴纸合集。" />
+    <meta property="og:image" content="https://yukinowan.com/og-image.png" />
+    <meta property="og:url" content="https://yukinowan.com/" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="雪乃碗的贴纸" />
+    <meta name="twitter:description" content="点击复制，随处贴贴！可爱的雪乃碗表情贴纸合集。" />
+    <meta name="twitter:image" content="https://yukinowan.com/og-image.png" />
   </head>
   <body class="min-h-screen text-primary">
     <Header />
