@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { copySticker, showCopyFeedback } from "../scripts/copy-sticker";
+import { copySticker, showCopyFeedback } from "../utils/copy-sticker";
 
 const shadowHideDelayMs = 200;
 
