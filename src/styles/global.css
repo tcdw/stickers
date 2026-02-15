@@ -25,31 +25,6 @@
   --color-accent-900: #7e2e10;
   --color-accent-950: #441406;
 
-  /* 颜色 - OC 配色 */
-  --color-line-main: #381416;
-  --color-line-secondary: #7d525c;
-  --color-line-cloth: var(--color-accent-900);
-  --color-hair: #f2f1f7;
-  --color-hair-shadow-1: #c8c2d0;
-  --color-hair-shadow-2: #a197b2;
-  --color-skin: #fdeadb;
-  --color-cloth: var(--color-accent-500);
-  --color-cloth-shadow-1: var(--color-accent-600);
-  --color-cloth-shadow-2: var(--color-accent-800);
-  --color-iris-shadow-1: var(--color-primary-800);
-  --color-iris-shadow-2: var(--color-primary-950);
-  --color-iris: var(--color-primary-600);
-  --color-iris-bright-1: var(--color-primary-300);
-  --color-iris-bright-2: var(--color-primary-100);
-
-  --color-primary: var(--color-line-main);
-  --color-primary-text: var(--color-hair);
-  --color-accent: var(--color-cloth-shadow-1);
-  --color-accent-text: var(--color-line-main);
-  --color-bg: var(--color-hair);
-  --color-bg-card: var(--color-skin);
-  --color-border: var(--color-iris);
-
   /* 字体 */
   --font-family-sans: "ChillRoundF", system-ui, -apple-system, sans-serif;
   --font-family-display: "ChillRoundF", system-ui, -apple-system, sans-serif;
@@ -92,50 +67,6 @@ body {
 
 .banner {
   background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23000000' fill-opacity='0.04' fill-rule='evenodd'/%3E%3C/svg%3E");
-}
-
-/* ============================================
-   粗野主义组件类
-   ============================================ */
-
-/* 按钮 - 粗野主义风格 */
-.btn-brutal {
-  @apply inline-flex items-center justify-center gap-2;
-  @apply px-6 py-3;
-  @apply bg-primary text-primary-text;
-  @apply border-brutal border-border;
-  @apply font-semibold cursor-pointer;
-  @apply transition-transform duration-75 ease-out;
-}
-
-.btn-brutal:hover {
-  @apply -translate-x-0.5 -translate-y-0.5;
-}
-
-.btn-brutal:active {
-  @apply translate-x-0 translate-y-0;
-}
-
-.btn-brutal.accent {
-  @apply bg-accent text-accent-text;
-}
-
-.btn-brutal:disabled {
-  @apply bg-gray-300 cursor-not-allowed;
-  transform: none;
-}
-
-/* 卡片 - 粗野主义风格 */
-.card-brutal {
-  @apply bg-bg-card;
-  @apply border-brutal border-border;
-}
-
-/* 平台占位符 */
-.platform-placeholder {
-  @apply bg-bg;
-  @apply border-2 border-dashed border-border;
-  @apply opacity-60;
 }
 
 /* ============================================
