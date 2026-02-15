@@ -37,37 +37,37 @@ export default function Navigation({ avatar }: Props) {
     }
   }, [mobileMenuOpen]);
 
-  useEffect(() => {
-    function handleScroll() {
-      const navBackground = document.getElementById("navBackground");
-      const navScrollNotice = document.getElementById("navScrollNotice");
+  // useEffect(() => {
+  //   function handleScroll() {
+  //     const navBackground = document.getElementById("navBackground");
+  //     const navScrollNotice = document.getElementById("navScrollNotice");
 
-      if (navBackground && window.scrollY > navBackground.getBoundingClientRect().height * (1 / 1.618)) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+  //     if (navBackground && window.scrollY > navBackground.getBoundingClientRect().height * (1 / 1.618)) {
+  //       setIsScrolled(true);
+  //     } else {
+  //       setIsScrolled(false);
+  //     }
 
-      if (navScrollNotice) {
-        if (window.scrollY > 64) {
-          navScrollNotice.classList.add("opacity-0");
-        } else {
-          navScrollNotice.classList.remove("opacity-0");
-        }
-      }
-    }
+  //     if (navScrollNotice) {
+  //       if (window.scrollY > 64) {
+  //         navScrollNotice.classList.add("opacity-0");
+  //       } else {
+  //         navScrollNotice.classList.remove("opacity-0");
+  //       }
+  //     }
+  //   }
 
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", handleScroll);
-      handleScroll();
-    }
+  //   if (typeof window !== "undefined") {
+  //     window.addEventListener("scroll", handleScroll);
+  //     handleScroll();
+  //   }
 
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (typeof window !== "undefined") {
+  //       window.removeEventListener("scroll", handleScroll);
+  //     }
+  //   };
+  // }, []);
 
   // Cleanup timers on unmount
   useEffect(() => {
@@ -110,7 +110,7 @@ export default function Navigation({ avatar }: Props) {
       <div
         id="navBar"
         className={cn(
-          "absolute -translate-x-2/4 left-2/4 h-(--navBar-height) md:h-[inherit] backdrop-blur-2xl bg-white/80 dark:bg-primary-950/80 shadow-2xl [transition:top_150ms,height_400ms_cubic-bezier(.47,1.64,.41,.8)] overflow-clip",
+          "absolute -translate-x-2/4 left-2/4 h-(--navBar-height) md:h-[inherit] backdrop-blur-xl bg-white/80 shadow-xl [transition:top_150ms,height_400ms_cubic-bezier(.47,1.64,.41,.8)] overflow-clip",
           isScrolled
             ? "w-full top-0 shadow-[rgba(0,0,0,0.15)]"
             : "rounded-[2.25rem] top-4 w-[calc(100dvw-2rem)] md:w-max",
@@ -121,15 +121,15 @@ export default function Navigation({ avatar }: Props) {
           } as React.CSSProperties
         }
       >
-        <div className="flex justify-between md:justify-center items-center gap-8 ps-3 pe-3 py-3 h-18">
-          <a href="./" className="block flex-none" title="首页">
+        <div className="flex justify-between md:justify-center items-center gap-1 ps-3 pe-3 py-3 h-18 md:h-16">
+          {/* <a href="./" className="block flex-none" title="首页">
             {avatar}
-          </a>
+          </a> */}
           <ul className="hidden md:contents">
             {SITE_MENU.map(e => (
               <li className="contents" key={e.title}>
                 <a
-                  className="text-base leading-6 h-6 block text-black dark:text-white hover:text-accent-600 dark:hover:text-accent-500 transition-colors duration-200 flex-none"
+                  className="text-base leading-6 flex items-center justify-center text-gray-950 hover:text-amber-400 hover:bg-gray-950 rounded-full px-4 h-10 transition-colors duration-150 flex-none"
                   href={e.href}
                   target={e.target}
                 >
@@ -138,13 +138,13 @@ export default function Navigation({ avatar }: Props) {
               </li>
             ))}
           </ul>
-          <div className="flex flex-none">
+          <div className="flex flex-none w-full justify-end md:hidden">
             <button
               onClick={() => handleMobileMenuToggle()}
               aria-label="打开菜单"
               aria-controls={mobileMenuId}
               aria-expanded={mobileMenuOpen}
-              className="w-12 h-12 md:hidden flex items-center justify-center rounded-full md:-ms-3 transition-colors bg-white/0 active:bg-white/10"
+              className="w-12 h-12 flex items-center justify-center rounded-full md:-ms-3 transition-colors bg-white/0 active:bg-white/10"
             >
               <span className="block relative w-5 h-5" aria-hidden="true">
                 <span
@@ -171,7 +171,7 @@ export default function Navigation({ avatar }: Props) {
               <li className="contents" key={e.title}>
                 <a
                   onClick={() => handleMobileMenuToggle(false)}
-                  className="text-xl leading-6 h-14 flex items-center justify-center text-black dark:text-white hover:text-accent-600 dark:hover:text-accent-500 transition-colors duration-200 flex-none"
+                  className="text-xl leading-6 h-14 flex items-center justify-center text-black hover:text-accent-600 dark:hover:text-accent-500 transition-colors duration-200 flex-none"
                   href={e.href}
                   target={e.target}
                 >
