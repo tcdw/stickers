@@ -99,7 +99,7 @@ export default function StickerCardButton({
     >
       <button
         type="button"
-        className="relative z-10 w-full bg-gray-100 p-4 md:p-6 flex flex-col items-center text-center transition-transform duration-200 group-hover:-translate-x-2.5 group-hover:-translate-y-2.5 rounded-2xl sm:rounded-3xl md:rounded-4xl cursor-pointer disabled:cursor-wait disabled:opacity-80 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+        className="relative z-10 w-full bg-muted p-4 md:p-6 flex flex-col items-center text-center transition-transform duration-200 group-hover:-translate-x-2.5 group-hover:-translate-y-2.5 rounded-2xl sm:rounded-3xl md:rounded-4xl cursor-pointer disabled:cursor-wait disabled:opacity-80 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-primary-400"
         onClick={handleClick}
         disabled={isCopying}
         aria-label={label}
@@ -109,7 +109,7 @@ export default function StickerCardButton({
         <span className="block text-2xl mb-2" aria-hidden="true">
           {emoji.join(" ")}
         </span>
-        <span className="block text-sm opacity-70">{alt}</span>
+        <span className="block text-sm text-muted-foreground">{alt}</span>
       </button>
       <div className={shadowClassName} data-sticker-shadow aria-hidden="true" />
     </div>

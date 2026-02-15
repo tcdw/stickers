@@ -72,37 +72,6 @@ const stickersWithImages = stickers.map(sticker => {
     <Navigation client:load />
     <Header />
     <div class="container">
-      <!-- Header -->
-      <!-- <header class="text-center mb-12 py-12 border-b-brutal border-border">
-        <h1 class="text-4xl sm:text-5xl font-bold mb-4">雪乃碗的贴纸</h1>
-        <p class="text-lg opacity-70">点击复制，随处贴贴</p>
-      </header> -->
-
-      <!-- Platforms -->
-      <!-- <nav class="flex flex-wrap gap-4 justify-center mb-12" aria-label="平台链接">
-        {
-          platforms.map(platform => (
-            <a
-              href={platform.available ? platform.url : undefined}
-              class:list={[
-                "inline-flex items-center gap-2 px-5 py-3 bg-[#24A1DE] text-white rounded-xl font-semibold transition-colors duration-200",
-                "hover:not-disabled:bg-[color-mix(in_srgb,var(--color-white)_25%,#24A1DE)] hover:not-disabled:text-primary-text",
-                { "bg-bg border-dashed opacity-60 cursor-not-allowed": !platform.available },
-              ]}
-              target={platform.available ? "_blank" : undefined}
-              rel={platform.available ? "noopener noreferrer" : undefined}
-              onclick={!platform.available ? "return false;" : undefined}
-              aria-disabled={!platform.available}
-            >
-              <span>{platform.name}</span>
-              {!platform.available && (
-                <span class="text-xs px-1.5 py-0.5 bg-accent text-accent-text ml-1">敬请期待</span>
-              )}
-            </a>
-          ))
-        }
-      </nav> -->
-
       <!-- Sticker Grid -->
       <main>
         <section aria-label="贴纸列表">
@@ -131,14 +100,6 @@ const stickersWithImages = stickers.map(sticker => {
                   />
                 </StickerCardButton>
               ))
-            }
-
-            {
-              stickers.length === 0 && (
-                <div class="col-span-full text-center py-12 border-brutal border-dashed border-border opacity-60">
-                  <p>暂无贴纸，敬请期待 ✨</p>
-                </div>
-              )
             }
           </div>
         </section>

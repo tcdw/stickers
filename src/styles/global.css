@@ -25,6 +25,11 @@
   --color-accent-900: #7e2e10;
   --color-accent-950: #441406;
 
+  /* 语义化颜色 */
+  --color-foreground: var(--color-gray-700);
+  --color-muted: var(--color-gray-100);
+  --color-muted-foreground: var(--color-gray-500);
+
   /* 字体 */
   --font-family-sans: "ChillRoundF", system-ui, -apple-system, sans-serif;
   --font-family-display: "ChillRoundF", system-ui, -apple-system, sans-serif;
