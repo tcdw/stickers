@@ -162,13 +162,13 @@ export default function Navigation({ avatar }: Props) {
             >
               <span className="block relative w-5 h-5" aria-hidden="true">
                 <span
-                  className={`duration-200 block w-5 h-[0.225rem] bg-black dark:bg-white rounded-full burger-bar-1 burger-bar-1--s${menuStep} absolute left-1/2`}
+                  className={`duration-200 block w-5 h-[0.225rem] bg-black rounded-full burger-bar-1 burger-bar-1--s${menuStep} absolute left-1/2`}
                 ></span>
                 <span
-                  className={`duration-200 block w-5 h-[0.225rem] bg-black dark:bg-white rounded-full burger-bar-2 burger-bar-2--s${menuStepMiddle} absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}
+                  className={`duration-200 block w-5 h-[0.225rem] bg-black rounded-full burger-bar-2 burger-bar-2--s${menuStepMiddle} absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}
                 ></span>
                 <span
-                  className={`duration-200 block w-5 h-[0.225rem] bg-black dark:bg-white rounded-full burger-bar-3 burger-bar-3--s${menuStep} absolute left-1/2`}
+                  className={`duration-200 block w-5 h-[0.225rem] bg-black rounded-full burger-bar-3 burger-bar-3--s${menuStep} absolute left-1/2`}
                 ></span>
               </span>
             </button>
@@ -177,7 +177,7 @@ export default function Navigation({ avatar }: Props) {
         <div className={`flex flex-col items-center md:hidden ${menuItemHidden ? "hidden" : ""}`} id={mobileMenuId}>
           <hr
             className={`w-[calc(100%-1.5rem)] transition-colors duration-400 ${
-              mobileMenuOpen ? "border-black/10 dark:border-white/10" : "border-transparent"
+              mobileMenuOpen ? "border-black/10" : "border-transparent"
             }`}
           />
           <ul className="w-full p-3">
@@ -196,9 +196,7 @@ export default function Navigation({ avatar }: Props) {
                     }}
                     className={cn(
                       "text-xl leading-6 h-14 flex items-center justify-center transition-colors duration-200 flex-none",
-                      isPlaceholder
-                        ? "text-black/40 dark:text-white/40 cursor-not-allowed"
-                        : "text-black hover:text-accent-600 dark:hover:text-accent-500",
+                      isPlaceholder ? "text-black/40 cursor-not-allowed" : "text-black hover:text-accent-600",
                     )}
                     href={e.href}
                     target={e.target}
