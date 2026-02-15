@@ -8,7 +8,7 @@ import type { ImageMetadata } from "astro";
 import "../styles/global.css";
 // 使用 AI 生成的数据文件
 // 如需重新生成，运行: pnpm generate-metadata
-import { stickers, platforms } from "../data/stickers-generated.ts";
+import { stickers } from "../data/stickers-generated.ts";
 
 const stickerImages = import.meta.glob("../assets/stickers/*.{png,jpg,jpeg}", {
   eager: true,
@@ -60,6 +60,13 @@ const stickersWithImages = stickers.map(sticker => {
     <meta name="twitter:title" content="雪乃碗的贴纸" />
     <meta name="twitter:description" content="点击复制，随处贴贴！可爱的雪乃碗表情贴纸合集。" />
     <meta name="twitter:image" content="https://yukinowan.com/og-image.png" />
+
+    <link
+      rel="stylesheet"
+      fetchpriority="low"
+      href="https://file.tcdw.net/fonts/ChillRoundF/ChillRoundF.css"
+      crossorigin
+    />
   </head>
   <body class="min-h-screen text-primary">
     <Navigation client:load />
