@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { copySticker, showCopyFeedback } from "../utils/copy-sticker";
+import { getTwemojiSrc } from "../utils/twemoji";
 
 const shadowHideDelayMs = 200;
 
@@ -107,7 +108,18 @@ export default function StickerCardButton({
       >
         <span className="block w-full aspect-square items-center justify-center mb-4">{children}</span>
         <span className="block text-2xl mb-2" aria-hidden="true">
-          {emoji.join(" ")}
+          <span className="inline-flex items-center justify-center gap-1">
+            {emoji.map((emojiChar, index) => (
+              <img
+                key={`${emojiChar}-${index}`}
+                src={getTwemojiSrc(emojiChar)}
+                alt=""
+                className="twemoji"
+                loading="lazy"
+                decoding="async"
+              />
+            ))}
+          </span>
         </span>
         <span className="block text-sm text-muted-foreground">{alt}</span>
       </button>
