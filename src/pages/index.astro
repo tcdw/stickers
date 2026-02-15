@@ -71,7 +71,7 @@ const stickersWithImages = stickers.map(sticker => {
   <body class="min-h-screen text-primary">
     <Navigation client:load />
     <Header />
-    <div class="container">
+    <div class="container px-4 sm:px-6 lg:px-8">
       <!-- Sticker Grid -->
       <main>
         <section aria-label="贴纸列表">
@@ -104,16 +104,16 @@ const stickersWithImages = stickers.map(sticker => {
           </div>
         </section>
       </main>
-
+    </div>
+    <footer class="py-8 mt-8 bg-muted">
       <!-- Footer -->
-      <footer class="my-12 pt-8 border-t-brutal border-border text-sm opacity-60 grid grid-cols-1 md:grid-cols-2">
-        <div class="space-y-1">
+      <div class="container px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2">
+        <div class="space-y-1 text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} tcdw. Made with ❤️ for Yukino Wan.</p>
           <p>在本站出现的插画图案均借助生成式 AI 技术生成</p>
         </div>
-        <div></div>
-      </footer>
-    </div>
+      </div>
+    </footer>
   </body>
 </html>
 
