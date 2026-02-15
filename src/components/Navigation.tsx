@@ -126,17 +126,31 @@ export default function Navigation({ avatar }: Props) {
             {avatar}
           </a> */}
           <ul className="hidden md:contents">
-            {SITE_MENU.map(e => (
-              <li className="contents" key={e.title}>
-                <a
-                  className="text-base leading-6 flex items-center justify-center text-gray-950 hover:text-amber-400 hover:bg-gray-950 rounded-full px-4 h-10 transition-colors duration-150 flex-none"
-                  href={e.href}
-                  target={e.target}
-                >
-                  {e.title}
-                </a>
-              </li>
-            ))}
+            {SITE_MENU.map(e => {
+              const isPlaceholder = e.href === "#";
+              return (
+                <li className="contents" key={e.title}>
+                  <a
+                    className={cn(
+                      "text-base leading-6 flex items-center justify-center rounded-full px-4 h-10 transition-colors duration-150 flex-none",
+                      isPlaceholder
+                        ? "text-gray-400 cursor-not-allowed"
+                        : "text-gray-950 hover:text-amber-400 hover:bg-gray-950",
+                    )}
+                    href={e.href}
+                    target={e.target}
+                    onClick={event => {
+                      if (isPlaceholder) {
+                        event.preventDefault();
+                        alert("敬请期待");
+                      }
+                    }}
+                  >
+                    {e.title}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
           <div className="flex flex-none w-full justify-end md:hidden">
             <button
@@ -167,18 +181,33 @@ export default function Navigation({ avatar }: Props) {
             }`}
           />
           <ul className="w-full p-3">
-            {SITE_MENU.map(e => (
-              <li className="contents" key={e.title}>
-                <a
-                  onClick={() => handleMobileMenuToggle(false)}
-                  className="text-xl leading-6 h-14 flex items-center justify-center text-black hover:text-accent-600 dark:hover:text-accent-500 transition-colors duration-200 flex-none"
-                  href={e.href}
-                  target={e.target}
-                >
-                  {e.title}
-                </a>
-              </li>
-            ))}
+            {SITE_MENU.map(e => {
+              const isPlaceholder = e.href === "#";
+              return (
+                <li className="contents" key={e.title}>
+                  <a
+                    onClick={event => {
+                      if (isPlaceholder) {
+                        event.preventDefault();
+                        alert("敬请期待");
+                      } else {
+                        handleMobileMenuToggle(false);
+                      }
+                    }}
+                    className={cn(
+                      "text-xl leading-6 h-14 flex items-center justify-center transition-colors duration-200 flex-none",
+                      isPlaceholder
+                        ? "text-black/40 dark:text-white/40 cursor-not-allowed"
+                        : "text-black hover:text-accent-600 dark:hover:text-accent-500",
+                    )}
+                    href={e.href}
+                    target={e.target}
+                  >
+                    {e.title}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
