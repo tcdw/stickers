@@ -1,9 +1,8 @@
 ---
-import Header from "../components/header.astro";
-import Navigation from "../components/Navigation";
-import StickerCardButton from "../components/StickerCardButton";
-import { Image } from "astro:assets";
+import StickerPage from "../components/StickerPage";
+import { getImage } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import bannerImage from "../assets/banner.png";
 
 import "../styles/global.css";
 // 使用 AI 生成的数据文件
@@ -15,19 +14,41 @@ const stickerImages = import.meta.glob("../assets/stickers/*.{png,jpg,jpeg}", {
   import: "default",
 }) as Record<string, ImageMetadata>;
 
-const stickersWithImages = stickers.map(sticker => {
-  const image = stickerImages[`../assets/stickers/${sticker.file}`];
-
-  if (!image) {
-    throw new Error(`Missing sticker image: ${sticker.file}`);
-  }
-
-  return {
-    ...sticker,
-    image,
-    copySrc: image.src,
-  };
+const bannerOptimized = await getImage({
+  src: bannerImage,
+  alt: "Site Banner",
 });
+
+const stickersWithImages = await Promise.all(
+  stickers.map(async sticker => {
+    const image = stickerImages[`../assets/stickers/${sticker.file}`];
+
+    if (!image) {
+      throw new Error(`Missing sticker image: ${sticker.file}`);
+    }
+
+    const optimized = await getImage({
+      src: image,
+      alt: sticker.alt,
+      width: 512,
+      height: 512,
+      widths: [160, 240, 320, 480, 640],
+      sizes: "(min-width: 1024px) 240px, (min-width: 768px) 200px, 45vw",
+      loading: "lazy",
+      decoding: "async",
+    });
+
+    return {
+      ...sticker,
+      image: {
+        src: optimized.src,
+        srcSet: optimized.srcSet.attribute,
+        attributes: optimized.attributes,
+      },
+      copySrc: image.src,
+    };
+  }),
+);
 ---
 
 <!doctype html>
@@ -69,58 +90,15 @@ const stickersWithImages = stickers.map(sticker => {
     />
   </head>
   <body class="min-h-screen text-primary">
-    <Navigation client:load />
-    <Header />
-    <div class="container px-4 sm:px-6 lg:px-8">
-      <!-- Sticker Grid -->
-      <main>
-        <section aria-label="贴纸列表">
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="sticker-grid">
-            {
-              stickersWithImages.map(sticker => (
-                <StickerCardButton
-                  client:load
-                  id={sticker.id}
-                  imageUrl={sticker.copySrc}
-                  filename={sticker.file}
-                  alt={sticker.alt}
-                  emoji={sticker.emoji}
-                  label={`复制 ${sticker.alt}`}
-                >
-                  <Image
-                    src={sticker.image}
-                    alt={sticker.alt}
-                    width={512}
-                    height={512}
-                    widths={[160, 240, 320, 480, 640]}
-                    sizes="(min-width: 1024px) 240px, (min-width: 768px) 200px, 45vw"
-                    loading="lazy"
-                    decoding="async"
-                    class="max-w-full max-h-full object-contain"
-                  />
-                </StickerCardButton>
-              ))
-            }
-          </div>
-        </section>
-      </main>
-    </div>
-    <footer class="py-8 mt-8 bg-muted">
-      <!-- Footer -->
-      <div class="container px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2">
-        <div class="space-y-1 text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} tcdw. Made with ❤️ for Yukino Wan.</p>
-          <p>在本站出现的插画图案均借助生成式 AI 技术生成</p>
-        </div>
-      </div>
-    </footer>
+    <StickerPage
+      client:load
+      banner={{
+        src: bannerOptimized.src,
+        srcSet: bannerOptimized.srcSet.attribute,
+        attributes: bannerOptimized.attributes,
+        alt: "Site Banner",
+      }}
+      stickers={stickersWithImages}
+    />
   </body>
 </html>
-
-<script>
-  import React from "react";
-  import ReactDOM from "react-dom";
-
-  window.React = React;
-  window.ReactDOM = ReactDOM;
-</script>
