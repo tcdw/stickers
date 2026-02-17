@@ -1,10 +1,10 @@
 ---
+import PageWrapper from "../components/PageWrapper.astro";
 import StickerPage from "../components/StickerPage";
 import { getImage } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import bannerImage from "../assets/banner.png";
 
-import "../styles/global.css";
 // 使用 AI 生成的数据文件
 // 如需重新生成，运行: pnpm generate-metadata
 import { stickers } from "../data/stickers-generated.ts";
@@ -51,26 +51,8 @@ const stickersWithImages = await Promise.all(
 );
 ---
 
-<!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
-    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="128x128" href="/favicon-128x128.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
-    <link rel="icon" type="image/png" sizes="256x256" href="/favicon-256x256.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
-    <title>雪乃碗的贴纸</title>
-    <meta name="description" content="点击复制，随处贴贴！可爱的雪乃碗表情贴纸合集。" />
-
+<PageWrapper title="雪乃碗的贴纸" description="点击复制，随处贴贴！可爱的雪乃碗表情贴纸合集。">
+  <Fragment slot="head">
     <meta property="og:title" content="雪乃碗的贴纸" />
     <meta property="og:description" content="点击复制，随处贴贴！可爱的雪乃碗表情贴纸合集。" />
     <meta property="og:image" content="https://yukinowan.com/og-image.png" />
@@ -81,24 +63,16 @@ const stickersWithImages = await Promise.all(
     <meta name="twitter:title" content="雪乃碗的贴纸" />
     <meta name="twitter:description" content="点击复制，随处贴贴！可爱的雪乃碗表情贴纸合集。" />
     <meta name="twitter:image" content="https://yukinowan.com/og-image.png" />
+  </Fragment>
 
-    <link
-      rel="stylesheet"
-      fetchpriority="low"
-      href="https://file.tcdw.net/fonts/ChillRoundF/ChillRoundF.css"
-      crossorigin
-    />
-  </head>
-  <body class="min-h-screen text-primary">
-    <StickerPage
-      client:load
-      banner={{
-        src: bannerOptimized.src,
-        srcSet: bannerOptimized.srcSet.attribute,
-        attributes: bannerOptimized.attributes,
-        alt: "Site Banner",
-      }}
-      stickers={stickersWithImages}
-    />
-  </body>
-</html>
+  <StickerPage
+    client:load
+    banner={{
+      src: bannerOptimized.src,
+      srcSet: bannerOptimized.srcSet.attribute,
+      attributes: bannerOptimized.attributes,
+      alt: "Site Banner",
+    }}
+    stickers={stickersWithImages}
+  />
+</PageWrapper>
