@@ -8,7 +8,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "generate-metadata": "bun run scripts/generate-sticker-metadata.ts",
-    "fetch-twemoji": "bun run scripts/fetch-twemoji.ts"
+    "fetch-twemoji": "bun run scripts/fetch-twemoji.ts",
+    "setup-githooks": "git config core.hooksPath .githooks",
+    "postinstall": "bun run setup-githooks"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
