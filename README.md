@@ -1,6 +1,6 @@
 # Yukino Wan Stickers
 
-一个简洁的贴纸展示站点，采用粗野主义设计风格。
+一个简洁的贴纸展示站点
 
 ## 技术栈
 
@@ -66,56 +66,13 @@ pnpm generate-metadata
 ### AI 生成脚本的输出
 
 脚本会为每张贴纸生成：
+
 - **emoji**: 1-3 个最能表达情感的 Unicode emoji
 - **alt**: 中文描述（无障碍）
 - **tags**: 3-5 个标签用于分类
 - **mood**: 情绪分类（happy/sad/angry/excited 等）
 
 生成后可在 `stickers-generated.ts` 中手动微调。
-
-## 如何修改色板
-
-编辑 `src/styles/global.css` 中的 CSS 变量：
-
-```css
-:root {
-  /* 主色调 */
-  --color-primary: #1a1a1a;
-  --color-primary-text: #ffffff;
-  
-  /* 强调色 */
-  --color-accent: #ff3b30;
-  --color-accent-text: #ffffff;
-  
-  /* 背景色 */
-  --color-bg: #f5f5f0;
-  --color-bg-card: #ffffff;
-  
-  /* 边框 */
-  --color-border: #1a1a1a;
-  --border-width: 3px;
-}
-```
-
-## 字体来源与接入方式
-
-本项目使用 **ChillRoundF**（寒蝉圆体）作为界面字体。
-
-- **来源**: https://github.com/justfont/ChillRoundF
-- **许可证**: SIL Open Font License 1.1
-- **格式**: WOFF2（体积优化）
-
-字体文件放置在 `public/fonts/ChillRoundF.woff2`，通过 `@font-face` 本地加载：
-
-```css
-@font-face {
-  font-family: 'ChillRoundF';
-  src: url('/fonts/ChillRoundF.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;  /* 优化首屏加载 */
-}
-```
 
 ## 复制功能的浏览器限制
 
@@ -127,45 +84,21 @@ pnpm generate-metadata
 
 ### 浏览器兼容性
 
-| 功能 | Chrome | Firefox | Safari | Edge |
-|------|--------|---------|--------|------|
-| 复制图片 | ✅ 76+ | ⚠️ 部分支持 | ⚠️ 部分支持 | ✅ 79+ |
-| 复制 URL | ✅ 全部 | ✅ 全部 | ✅ 全部 | ✅ 全部 |
-| 触发下载 | ✅ 全部 | ✅ 全部 | ✅ 全部 | ✅ 全部 |
+| 功能     | Chrome  | Firefox     | Safari      | Edge    |
+| -------- | ------- | ----------- | ----------- | ------- |
+| 复制图片 | ✅ 76+  | ⚠️ 部分支持 | ⚠️ 部分支持 | ✅ 79+  |
+| 复制 URL | ✅ 全部 | ✅ 全部     | ✅ 全部     | ✅ 全部 |
+| 触发下载 | ✅ 全部 | ✅ 全部     | ✅ 全部     | ✅ 全部 |
 
 ### 安全上下文要求
 
 Clipboard API 仅在以下环境可用：
+
 - ✅ HTTPS 网站
 - ✅ localhost（开发环境）
 - ❌ HTTP 生产环境
 
 如果站点部署在非 HTTPS 环境，复制功能会自动降级为图片下载。
-
-## 项目结构
-
-```
-├── public/
-│   ├── fonts/              # 字体文件
-│   │   └── ChillRoundF.woff2
-│   └── favicon.svg
-├── scripts/
-│   └── generate-sticker-metadata.ts  # AI 生成 metadata 脚本
-├── src/
-│   ├── assets/
-│   │   └── stickers/           # 贴纸 PNG 资源 (0.png, 1.png...)
-│   ├── data/
-│   │   └── stickers-generated.ts  # AI 生成的数据文件
-│   ├── scripts/
-│   │   └── copy-sticker.ts        # 复制功能实现
-│   ├── styles/
-│   │   └── global.css             # 全局样式与 CSS 变量
-│   └── pages/
-│       └── index.astro            # 首页
-├── astro.config.mjs
-├── package.json
-└── README.md
-```
 
 ## 获取 Gemini API Key
 
@@ -174,10 +107,6 @@ Clipboard API 仅在以下环境可用：
 3. 点击 "Get API Key"
 4. 创建新的 API Key
 5. 设置环境变量：`export GOOGLE_GENERATIVE_AI_API_KEY="your-key"`
-
-**注意**: 
-- Gemini 2.0 Flash 目前免费额度较充足
-- 如需更高质量，可将脚本中的模型改为 `gemini-2.0-pro-exp`
 
 ## 待办 / 未来扩展
 
