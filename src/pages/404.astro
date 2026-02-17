@@ -1,0 +1,32 @@
+---
+import PageWrapper from "../components/PageWrapper.astro";
+---
+
+<PageWrapper title="页面未找到 | 雪乃碗的贴纸" description="页面走丢了，试试返回首页继续贴贴。" robots="noindex">
+  <main class="min-h-screen py-4 sm:py-6">
+    <div class="container px-4 sm:px-6 lg:px-8">
+      <section class="relative overflow-hidden rounded-3xl md:rounded-4xl bg-muted banner">
+        <div class="px-6 py-8 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
+          <h1 class="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground">404</h1>
+          <p class="mt-4 max-w-2xl text-lg text-muted-foreground">
+            你要找的页面可能被雪乃碗收进碗橱啦。先回首页，继续挑选可爱的贴纸吧。
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a
+              href="/"
+              class="inline-flex items-center justify-center rounded-full bg-primary-600 text-white px-6 py-3 text-base font-semibold transition-colors hover:bg-primary-700"
+            >
+              返回首页
+            </a>
+            <a
+              href="/#sticker-grid"
+              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/70 px-6 py-3 text-base font-semibold text-foreground transition-colors hover:bg-white"
+            >
+              看看贴纸
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</PageWrapper>
