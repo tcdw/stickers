@@ -92,3 +92,7 @@ img.twemoji {
   @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
   @apply gap-4 md:gap-6;
 }
+
+[data-sonner-toaster] {
+  font-family: unset;
+}

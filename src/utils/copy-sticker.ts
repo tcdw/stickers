@@ -1,12 +1,12 @@
 /**
  * 贴纸复制功能
- * 
+ *
  * 功能：将 PNG 图片复制到剪贴板
  * 浏览器限制：
  * - 需要 HTTPS 或 localhost（安全上下文）
  * - 需要用户交互触发
  * - Clipboard API 写入图片需要浏览器支持
- * 
+ *
  * Fallback 策略：
  * 1. 优先尝试复制图片 Blob（最理想）
  * 2. 失败则复制图片 URL
@@ -15,7 +15,7 @@
 
 export interface CopyResult {
   success: boolean;
-  method: 'image' | 'url' | 'download' | 'error';
+  method: "image" | "url" | "download" | "error";
   message: string;
 }
 
@@ -25,10 +25,10 @@ export interface CopyResult {
 function canWriteClipboardImage(): boolean {
   if (!navigator.clipboard) return false;
   if (!navigator.clipboard.write) return false;
-  
+
   // 检查是否为安全上下文
   if (!window.isSecureContext) return false;
-  
+
   return true;
 }
 
@@ -48,7 +48,7 @@ async function imageToBlob(url: string): Promise<Blob> {
  */
 async function tryCopyImage(url: string): Promise<boolean> {
   if (!canWriteClipboardImage()) return false;
-  
+
   try {
     const blob = await imageToBlob(url);
     const item = new ClipboardItem({ [blob.type]: blob });
@@ -65,7 +65,7 @@ async function tryCopyImage(url: string): Promise<boolean> {
 async function tryCopyText(text: string): Promise<boolean> {
   if (!navigator.clipboard) return false;
   if (!window.isSecureContext) return false;
-  
+
   try {
     await navigator.clipboard.writeText(text);
     return true;
@@ -78,10 +78,10 @@ async function tryCopyText(text: string): Promise<boolean> {
  * 触发图片下载
  */
 function triggerDownload(url: string, filename: string): void {
-  const link = document.createElement('a');
+  const link = document.createElement("a");
   link.href = url;
   link.download = filename;
-  link.target = '_blank';
+  link.target = "_blank";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -89,23 +89,20 @@ function triggerDownload(url: string, filename: string): void {
 
 /**
  * 复制贴纸的主函数
- * 
+ *
  * @param imageUrl 图片 URL
  * @param filename 下载时使用的文件名
  * @returns CopyResult 结果对象
  */
-export async function copySticker(
-  imageUrl: string,
-  filename: string
-): Promise<CopyResult> {
+export async function copySticker(imageUrl: string, filename: string): Promise<CopyResult> {
   // 检查安全上下文
   if (!window.isSecureContext) {
     // 非安全上下文，直接触发下载
     triggerDownload(imageUrl, filename);
     return {
       success: true,
-      method: 'download',
-      message: '已触发下载（非安全上下文无法使用剪贴板）',
+      method: "download",
+      message: "已触发下载（非安全上下文无法使用剪贴板）",
     };
   }
 
@@ -114,8 +111,8 @@ export async function copySticker(
   if (imageCopied) {
     return {
       success: true,
-      method: 'image',
-      message: '图片已复制到剪贴板！',
+      method: "image",
+      message: "图片已复制到剪贴板w",
     };
   }
 
@@ -125,8 +122,8 @@ export async function copySticker(
   if (textCopied) {
     return {
       success: true,
-      method: 'url',
-      message: '图片链接已复制（浏览器不支持复制图片本身）',
+      method: "url",
+      message: "图片链接已复制（浏览器不支持复制图片本身）",
     };
   }
 
@@ -134,49 +131,7 @@ export async function copySticker(
   triggerDownload(imageUrl, filename);
   return {
     success: true,
-    method: 'download',
-    message: '已触发下载（剪贴板不可用）',
+    method: "download",
+    message: "已触发下载（剪贴板不可用）",
   };
-}
-
-/**
- * 显示复制反馈（简化的 toast）
- */
-export function showCopyFeedback(message: string): void {
-  // 移除已存在的 toast
-  const existingToast = document.getElementById('copy-toast');
-  if (existingToast) existingToast.remove();
-
-  const toast = document.createElement('div');
-  toast.id = 'copy-toast';
-  toast.textContent = message;
-  // 使用 Tailwind CSS 类
-  toast.className = `
-    fixed bottom-8 left-1/2 -translate-x-1/2
-    bg-primary text-primary-text
-    px-8 py-4 border-[3px] border-border
-    text-base z-[9999]
-    animate-[toast-in_0.2s_ease]
-  `;
-  
-  // 添加动画样式（如果尚未添加）
-  if (!document.getElementById('toast-animation')) {
-    const style = document.createElement('style');
-    style.id = 'toast-animation';
-    style.textContent = `
-      @keyframes toast-in {
-        from { opacity: 0; transform: translate(-50%, 10px); }
-        to { opacity: 1; transform: translate(-50%, 0); }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-  
-  document.body.appendChild(toast);
-  
-  // 2秒后移除
-  setTimeout(() => {
-    toast.style.animation = 'toast-in 0.2s ease reverse';
-    setTimeout(() => toast.remove(), 200);
-  }, 2000);
 }

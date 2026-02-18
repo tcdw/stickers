@@ -1,4 +1,5 @@
 import type { ImgHTMLAttributes } from "react";
+import { Toaster } from "sonner";
 
 import Navigation from "./Navigation";
 import StickerCardButton from "./StickerCardButton";
@@ -25,14 +26,17 @@ interface Props {
   stickers: StickerItem[];
 }
 
-function buildImageProps(
-  image: OptimizedImage,
-  alt: string,
-  className: string,
-): ImgHTMLAttributes<HTMLImageElement> {
+function buildImageProps(image: OptimizedImage, alt: string, className: string): ImgHTMLAttributes<HTMLImageElement> {
   const attributes = image.attributes ?? {};
-  const { class: _class, className: _className, src: _src, srcset, srcSet: _srcSet, alt: _alt, ...rest } =
-    attributes as Record<string, unknown>;
+  const {
+    class: _class,
+    className: _className,
+    src: _src,
+    srcset,
+    srcSet: _srcSet,
+    alt: _alt,
+    ...rest
+  } = attributes as Record<string, unknown>;
   const resolvedSrcSet = (image.srcSet ?? _srcSet ?? srcset) as string | undefined;
 
   const props: ImgHTMLAttributes<HTMLImageElement> = {
@@ -58,6 +62,16 @@ export default function StickerPage({ banner, stickers }: Props) {
 
   return (
     <>
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          style: {
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+          },
+        }}
+      />
       <Navigation />
       <header>
         <div className="container sm:px-6 lg:px-8 pb-8 sm:pb-10 md:pb-12">
@@ -66,9 +80,7 @@ export default function StickerPage({ banner, stickers }: Props) {
             className="md:h-128 relative flex flex-col justify-center sm:justify-end bg-muted sm:rounded-b-3xl md:rounded-b-4xl banner"
           >
             <div className="flex flex-col items-center py-16 mt-22 md:ps-12 md:pb-12 md:items-start md:mt-0">
-              <h1 className="text-4xl text-foreground sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-                雪乃碗的贴纸
-              </h1>
+              <h1 className="text-4xl text-foreground sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">雪乃碗的贴纸</h1>
               <p className="text-lg text-muted-foreground">点击复制，随处贴贴</p>
             </div>
             <img {...bannerProps} />

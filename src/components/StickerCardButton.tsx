@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { copySticker, showCopyFeedback } from "../utils/copy-sticker";
+import { copySticker } from "../utils/copy-sticker";
 import { getTwemojiSrc } from "../utils/twemoji";
+import { toast } from "./ui/CustomToast";
 
 const shadowHideDelayMs = 200;
 
@@ -53,7 +54,10 @@ export default function StickerCardButton({
 
     try {
       const result = await copySticker(imageUrl, filename);
-      showCopyFeedback(result.message);
+      toast({
+        title: result.success ? "好耶！" : "坏了……",
+        description: result.message,
+      });
       // setStatusLabel(result.method === "image" ? "复制成功了喵" : "已处理");
 
       resetTimerRef.current = window.setTimeout(() => {
@@ -61,7 +65,10 @@ export default function StickerCardButton({
         resetTimerRef.current = null;
       }, 2000);
     } catch (error) {
-      showCopyFeedback("操作失败，请重试");
+      toast({
+        title: "坏了……",
+        description: "操作失败，请重试",
+      });
       // setStatusLabel("复制贴纸");
     } finally {
       setIsCopying(false);
