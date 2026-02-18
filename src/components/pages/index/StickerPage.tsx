@@ -1,7 +1,7 @@
 import type { ImgHTMLAttributes } from "react";
 import { Toaster } from "sonner";
 
-import Navigation from "./Navigation";
+import Navigation from "../../Navigation";
 import StickerCardButton from "./StickerCardButton";
 
 type OptimizedImage = {

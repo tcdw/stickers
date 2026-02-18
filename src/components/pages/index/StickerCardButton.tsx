@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { copySticker } from "../utils/copy-sticker";
-import { getTwemojiSrc } from "../utils/twemoji";
-import { toast } from "./ui/CustomToast";
+import { copySticker } from "../../../utils/copy-sticker";
+import { getTwemojiSrc } from "../../../utils/twemoji";
+import { toast } from "../../ui/CustomToast";
 
 const shadowHideDelayMs = 200;
 
