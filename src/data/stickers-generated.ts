@@ -9,6 +9,8 @@
  *   bun run scripts/generate-sticker-metadata.ts
  */
 
+const HUG_UNIVERSAL_EMOJI = ["🫂", "👀", "🥰"];
+
 export interface Sticker {
   /** 唯一标识符 */
   id: string;
@@ -166,7 +168,7 @@ export const stickers: Sticker[] = [
   {
     id: "sticker-20",
     file: "20.png",
-    emoji: ["🫂", "🤗", "😵‍💫"],
+    emoji: HUG_UNIVERSAL_EMOJI,
     alt: "与 Lynn 酱贴贴（令人窒息版）",
     tags: ["抱抱", "贴贴", "窒息", "喜欢", "抓到了"],
   },
@@ -187,35 +189,35 @@ export const stickers: Sticker[] = [
   {
     id: "sticker-25",
     file: "25.png",
-    emoji: ["🤗", "🥰", "❤️"],
+    emoji: HUG_UNIVERSAL_EMOJI,
     alt: "与可莉贴贴",
     tags: ["贴贴", "拥抱", "可莉", "原神", "可爱"],
   },
   {
     id: "sticker-26",
     file: "26.png",
-    emoji: ["🫂", "🥰", "👭"],
+    emoji: HUG_UNIVERSAL_EMOJI,
     alt: "与梦梦贴贴",
     tags: ["贴贴", "拥抱", "喜欢", "好耶", "YukinoWan"],
   },
   {
     id: "sticker-27",
     file: "27.png",
-    emoji: ["🤗", "🥰", "❤️"],
+    emoji: HUG_UNIVERSAL_EMOJI,
     alt: "与狐店长贴贴",
     tags: ["拥抱", "贴贴", "抱抱", "喜爱", "雪乃碗"],
   },
   {
     id: "sticker-28",
     file: "28.png",
-    emoji: ["🫂", "🥰", "👭"],
+    emoji: HUG_UNIVERSAL_EMOJI,
     alt: "与 Mono 兔贴贴",
     tags: ["贴贴", "抱抱", "喜欢", "亲密", "姐妹"],
   },
   {
     id: "sticker-29",
     file: "29.png",
-    emoji: ["🫂", "💖", "👭"],
+    emoji: HUG_UNIVERSAL_EMOJI,
     alt: "与 Lynn 酱贴贴",
     tags: ["抱抱", "贴贴", "拥抱", "喜欢", "雪乃碗"],
   },
@@ -236,21 +238,21 @@ export const stickers: Sticker[] = [
   {
     id: "sticker-32",
     file: "32.png",
-    emoji: ["🫂", "🥰", "🧡"],
+    emoji: HUG_UNIVERSAL_EMOJI,
     alt: "与御庭智乃贴贴",
     tags: ["贴贴", "抱抱", "喜欢", "百合", "治愈"],
   },
   {
     id: "sticker-33",
     file: "33.png",
-    emoji: ["🫂", "🤗"],
+    emoji: HUG_UNIVERSAL_EMOJI,
     alt: "与 aoi 贴贴",
     tags: ["拥抱", "贴贴", "抱抱", "安慰", "喜欢"],
   },
   {
     id: "sticker-34",
     file: "34.png",
-    emoji: ["🫂", "🥰", "🤗"],
+    emoji: HUG_UNIVERSAL_EMOJI,
     alt: "与 Canmi 贴贴",
     tags: ["抱抱", "贴贴", "拥抱"],
   },
@@ -264,7 +266,7 @@ export const stickers: Sticker[] = [
   {
     id: "sticker-36",
     file: "36.png",
-    emoji: ["🫂", "👀", "🥰"],
+    emoji: HUG_UNIVERSAL_EMOJI,
     alt: "与 Zhixiang 贴贴",
     tags: ["贴贴", "抱抱", "可爱"],
   },
@@ -274,6 +276,13 @@ export const stickers: Sticker[] = [
     emoji: ["💀", "😨", "😰"],
     alt: "面色发青、生无可恋",
     tags: ["绝望", "生无可恋", "眼神死", "阴暗"],
+  },
+  {
+    id: "sticker-38",
+    file: "38.png",
+    emoji: HUG_UNIVERSAL_EMOJI,
+    alt: "与腥味狐罐贴贴",
+    tags: ["贴贴", "抱抱", "可爱"],
   },
 ];
 
@@ -298,6 +307,7 @@ export const stickersByMood: Record<string, Sticker[]> = {
       "sticker-33",
       "sticker-34",
       "sticker-36",
+      "sticker-38",
     ].includes(s.id),
   ),
   silly: stickers.filter(s => ["sticker-5", "sticker-7", "sticker-14", "sticker-22", "sticker-30"].includes(s.id)),
