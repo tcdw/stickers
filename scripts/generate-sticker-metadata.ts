@@ -27,6 +27,7 @@ const StickerSchema = z.object({
   emoji: z.array(z.string()).min(1).max(3).describe("最适合描述这张贴纸的 1-3 个 Unicode emoji"),
   alt: z.string().min(1).max(50).describe("贴纸的中文描述（用于无障碍），简短有力"),
   tags: z.array(z.string()).min(1).max(5).describe("相关的标签关键词，用于搜索和分类"),
+  isHug: z.boolean().describe("是否为贴贴贴纸（与其他角色互动/拥抱的图片）"),
   mood: z
     .enum(["happy", "sad", "angry", "surprised", "loving", "silly", "calm", "excited", "confused", "neutral"])
     .describe("贴纸传达的主要情绪"),
@@ -40,6 +41,7 @@ interface StickerData {
   emoji: string[];
   alt: string;
   tags: string[];
+  isHug: boolean;
   mood: string;
 }
 
@@ -90,7 +92,8 @@ async function analyzeSticker(imagePath: string): Promise<StickerMetadata> {
 1. emoji: 选择最能表达这张贴纸情感的 1-3 个 Unicode emoji
 2. alt: 用简短有力的中文描述这张贴纸（10字以内），用于无障碍访问
 3. tags: 提供 3-5 个相关的标签关键词，用于搜索和分类
-4. mood: 判断贴纸传达的主要情绪
+4. isHug: 判断是否为「贴贴贴纸」——即图片中雪乃碗与另一个角色互动/拥抱的贴纸
+5. mood: 判断贴纸传达的主要情绪
 
 请确保描述准确、有趣，符合中文网络文化。`,
           },
@@ -133,8 +136,7 @@ async function loadExistingMetadata(): Promise<Map<string, CachedSticker>> {
     const mod = await import(moduleUrl);
 
     const stickers: unknown[] = Array.isArray(mod.stickers) ? mod.stickers : [];
-    const stickersByMood =
-      mod.stickersByMood && typeof mod.stickersByMood === "object" ? mod.stickersByMood : {};
+    const stickersByMood = mod.stickersByMood && typeof mod.stickersByMood === "object" ? mod.stickersByMood : {};
 
     const moodById = new Map<string, string>();
     for (const [mood, items] of Object.entries(stickersByMood)) {
@@ -165,15 +167,14 @@ async function loadExistingMetadata(): Promise<Map<string, CachedSticker>> {
         emoji,
         alt,
         tags,
+        isHug: typeof (s as { isHug?: unknown }).isHug === "boolean" ? (s as { isHug: boolean }).isHug : false,
         mood: moodById.get(id),
       });
     }
 
     return cached;
   } catch (error) {
-    console.warn(
-      `⚠️ 读取已生成 metadata 失败，将重新生成: ${error instanceof Error ? error.message : String(error)}`,
-    );
+    console.warn(`⚠️ 读取已生成 metadata 失败，将重新生成: ${error instanceof Error ? error.message : String(error)}`);
     return new Map();
   }
 }
@@ -206,9 +207,7 @@ async function main() {
   });
   const hasRemovedFiles = Array.from(existingMetadata.keys()).some(file => !fileSet.has(file));
 
-  console.log(
-    `♻️  已有 metadata: ${pngFiles.length - pendingFiles.length} 张，待生成: ${pendingFiles.length} 张`,
-  );
+  console.log(`♻️  已有 metadata: ${pngFiles.length - pendingFiles.length} 张，待生成: ${pendingFiles.length} 张`);
   console.log("");
 
   if (pendingFiles.length > 0) {
@@ -241,6 +240,7 @@ async function main() {
         emoji: cached.emoji,
         alt: cached.alt,
         tags: cached.tags,
+        isHug: cached.isHug,
         mood: cached.mood,
       });
 
@@ -264,6 +264,7 @@ async function main() {
         emoji: metadata.emoji,
         alt: metadata.alt,
         tags: metadata.tags,
+        isHug: metadata.isHug,
         mood: metadata.mood,
       });
 
@@ -308,6 +309,7 @@ function generateTsFile(stickers: StickerData[]): string {
     emoji: [${s.emoji.map(e => `'${e}'`).join(", ")}],
     alt: '${s.alt}',
     tags: [${s.tags.map(t => `'${t}'`).join(", ")}],
+    isHug: ${s.isHug},
   }`,
     )
     .join(",\n");
@@ -334,6 +336,8 @@ export interface Sticker {
   alt: string;
   /** 标签，用于搜索和分类 */
   tags: string[];
+  /** 是否为贴贴贴纸（与其他角色互动） */
+  isHug: boolean;
 }
 
 export const stickers: Sticker[] = [

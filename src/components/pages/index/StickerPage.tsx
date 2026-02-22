@@ -1,8 +1,9 @@
-import type { ImgHTMLAttributes } from "react";
+import { useMemo, useState, type ImgHTMLAttributes } from "react";
 import { Toaster } from "sonner";
 
 import Navigation from "../../Navigation";
 import StickerCardButton from "./StickerCardButton";
+import StickerFilter, { type StickerType } from "./StickerFilter";
 
 type OptimizedImage = {
   src: string;
@@ -17,6 +18,7 @@ type StickerItem = {
   emoji: string[];
   alt: string;
   tags: string[];
+  isHug: boolean;
   copySrc: string;
   image: OptimizedImage;
 };
@@ -54,6 +56,30 @@ function buildImageProps(image: OptimizedImage, alt: string, className: string):
 }
 
 export default function StickerPage({ banner, stickers }: Props) {
+  const [filterType, setFilterType] = useState<StickerType>("all");
+
+  const { filteredStickers, filterOptions } = useMemo(() => {
+    const normalCount = stickers.filter(s => !s.isHug).length;
+    const hugCount = stickers.filter(s => s.isHug).length;
+
+    const options = [
+      { value: "all" as StickerType, label: "全部", count: stickers.length },
+      { value: "normal" as StickerType, label: "普通", count: normalCount },
+      { value: "hug" as StickerType, label: "贴贴", count: hugCount },
+    ];
+
+    let filtered: StickerItem[];
+    if (filterType === "normal") {
+      filtered = stickers.filter(s => !s.isHug);
+    } else if (filterType === "hug") {
+      filtered = stickers.filter(s => s.isHug);
+    } else {
+      filtered = stickers;
+    }
+
+    return { filteredStickers: filtered, filterOptions: options };
+  }, [stickers, filterType]);
+
   const bannerProps = buildImageProps(
     banner,
     banner.alt,
@@ -90,8 +116,9 @@ export default function StickerPage({ banner, stickers }: Props) {
       <div className="container px-4 sm:px-6 lg:px-8">
         <main>
           <section aria-label="贴纸列表">
+            <StickerFilter options={filterOptions} value={filterType} onChange={setFilterType} />
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" id="sticker-grid">
-              {stickers.map(sticker => {
+              {filteredStickers.map(sticker => {
                 const stickerImageProps = buildImageProps(
                   sticker.image,
                   sticker.alt,
