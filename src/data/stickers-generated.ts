@@ -9,7 +9,7 @@
  *   bun run scripts/generate-sticker-metadata.ts
  */
 
-const HUG_UNIVERSAL_EMOJI = ["🫂", "👀", "🥰"];
+const HUG_UNIVERSAL_EMOJI = ["🫂", "🥰"];
 
 export interface Sticker {
   /** 唯一标识符 */
@@ -323,39 +323,15 @@ export const stickers: Sticker[] = [
     tags: ["贴贴", "抱抱", "可爱"],
     isHug: true,
   },
+  {
+    id: "sticker-39",
+    file: "39.png",
+    emoji: HUG_UNIVERSAL_EMOJI,
+    alt: "与小睡枕贴贴",
+    tags: ["贴贴", "抱抱", "可爱"],
+    isHug: true,
+  },
 ];
-
-/**
- * 按情绪分类的贴纸
- */
-export const stickersByMood: Record<string, Sticker[]> = {
-  happy: stickers.filter(s => ["sticker-0", "sticker-3", "sticker-4", "sticker-11", "sticker-21"].includes(s.id)),
-  excited: stickers.filter(s => ["sticker-1", "sticker-9"].includes(s.id)),
-  loving: stickers.filter(s =>
-    [
-      "sticker-2",
-      "sticker-6",
-      "sticker-8",
-      "sticker-20",
-      "sticker-25",
-      "sticker-26",
-      "sticker-27",
-      "sticker-28",
-      "sticker-29",
-      "sticker-32",
-      "sticker-33",
-      "sticker-34",
-      "sticker-36",
-      "sticker-38",
-    ].includes(s.id),
-  ),
-  silly: stickers.filter(s => ["sticker-5", "sticker-7", "sticker-14", "sticker-22", "sticker-30"].includes(s.id)),
-  neutral: stickers.filter(s => ["sticker-10"].includes(s.id)),
-  surprised: stickers.filter(s => ["sticker-12"].includes(s.id)),
-  sad: stickers.filter(s => ["sticker-13", "sticker-16", "sticker-17", "sticker-31", "sticker-37"].includes(s.id)),
-  confused: stickers.filter(s => ["sticker-15", "sticker-19", "sticker-35"].includes(s.id)),
-  angry: stickers.filter(s => ["sticker-18"].includes(s.id)),
-};
 
 /**
  * Telegram 贴纸包链接
