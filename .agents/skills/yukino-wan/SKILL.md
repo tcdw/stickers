@@ -18,7 +18,6 @@ When the user asks you to write stories, generate art prompts, or brainstorm con
 1. **Read the Reference Material:** Before generating content, always read the full character profile located at `references/char.md`. This file is formatted using the Neo-World Building Character Standard Metadata Specification (NWBCSMS) v0.0a.
 2. **Respect the Core Vibe:**
    - She is practical and loves high-availability/long-term support concepts, both in code and in clothing.
-   - She is an extreme railfan (especially Chinese CRH/CR trains and Japanese railways).
    - She does not wear complex outfits or makeup.
    - Her personality is "废萌" (lazy/cute) on the surface but highly capable and efficient in practice.
 3. **Consistency:** Ensure her visual descriptions match her booru tags (`silver_hair`, `long_hair`, `high_ponytail`, `blue_eyes`, `muted_orange_hoodie`, `black_turtleneck`). Use her official image generation prompt from `char.md` when creating generative art prompts.
