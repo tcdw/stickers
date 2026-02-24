@@ -1,0 +1,75 @@
+---
+import { Image } from "astro:assets";
+import Navigation from "../components/Navigation";
+import PageWrapper from "../components/PageWrapper.astro";
+import tachieImage from "../assets/tachie.jpg";
+---
+
+<PageWrapper
+  title="关于 雪乃碗 | About Yukino Wan"
+  description="雪乃碗 (Yukino Wan) 的个人主页 - 跨越时代的陪伴，与永不宕机的温柔。"
+>
+  <Navigation client:load />
+  <div class="h-[88px] md:h-[80px]"></div>
+  <main class="container sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 mx-auto">
+    <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-start px-4 sm:px-0">
+      <!-- Left: Character Portrait (Tachie) -->
+      <div class="w-full md:w-5/12 flex justify-center">
+        <Image src={tachieImage} alt="雪乃碗 立绘" class="w-full rounded-3xl md:rounded-4xl object-cover" />
+      </div>
+
+      <!-- Right: Character Info -->
+      <div class="w-full md:w-7/12 space-y-10">
+        <!-- Header -->
+        <div class="space-y-4 pb-6 border-b border-gray-200">
+          <h1 class="text-4xl md:text-6xl font-bold text-foreground flex flex-col gap-2">
+            <span>雪乃碗</span>
+            <span class="text-2xl md:text-3xl text-muted-foreground font-medium tracking-widest">YUKINO WAN</span>
+          </h1>
+          <p class="text-lg text-muted-foreground">跨越时代的陪伴，与永不宕机的温柔。</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+          <div class="bg-muted p-4 rounded-2xl">
+            <span class="block text-muted-foreground text-xs font-bold uppercase tracking-wider mb-1">Age</span>
+            <span class="font-bold text-foreground text-lg"
+              >27 <span class="text-xs font-normal text-muted-foreground">(Appears 22)</span></span
+            >
+          </div>
+          <div class="bg-muted p-4 rounded-2xl">
+            <span class="block text-muted-foreground text-xs font-bold uppercase tracking-wider mb-1">Height</span>
+            <span class="font-bold text-foreground text-lg">165cm</span>
+          </div>
+          <div class="bg-muted p-4 rounded-2xl">
+            <span class="block text-muted-foreground text-xs font-bold uppercase tracking-wider mb-1">Occupation</span>
+            <span class="font-bold text-foreground text-lg">IT Engineer</span>
+          </div>
+          <div class="bg-muted p-4 rounded-2xl">
+            <span class="block text-muted-foreground text-xs font-bold uppercase tracking-wider mb-1">Dress Code</span>
+            <span class="font-bold text-foreground text-lg leading-tight"
+              >Orange Hoodie<br /><span class="text-sm font-normal text-muted-foreground">& Black Turtleneck</span
+              ></span
+            >
+          </div>
+        </div>
+
+        <!-- Profile Text -->
+        <div class="space-y-6">
+          <h2 class="text-2xl font-bold text-foreground flex items-center gap-3">PROFILE</h2>
+
+          <div class="space-y-4 text-muted-foreground leading-relaxed">
+            <p>
+              表面上是个慢悠悠、带着点「废萌」气息的白毛高马尾少女，实际上却是拥有极高专业素养的硬核 IT
+              从业者。她拒绝繁复的妆容与难以维护的穿搭，坚信「高可用性」与「极简」才是跨越时代的终极审美。
+            </p>
+            <p>
+              比起逛街购物，她更愿意把丰厚的薪水投入到 Homelab
+              的机柜、二手洋垃圾显卡，以及开源大语言模型的研究中。同时，她也是一名狂热的轨道交通迷，梦想着有朝一日能抛下所有工作，在日本展开一场漫无目的的铁道之旅。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</PageWrapper>
