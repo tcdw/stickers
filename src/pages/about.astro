@@ -2,7 +2,8 @@
 import { Image } from "astro:assets";
 import Navigation from "../components/Navigation";
 import PageWrapper from "../components/PageWrapper.astro";
-import tachieImage from "../assets/tachie.jpg";
+import Footer from "../components/Footer";
+import tachieImage from "../assets/tachie2.jpg";
 ---
 
 <PageWrapper
@@ -10,12 +11,13 @@ import tachieImage from "../assets/tachie.jpg";
   description="雪乃碗 (Yukino Wan) 的个人主页 - 跨越时代的陪伴，与永不宕机的温柔。"
 >
   <Navigation client:load />
-  <div class="h-[88px] md:h-[80px]"></div>
+  <Image src={tachieImage} alt="雪乃碗 立绘" class="w-full object-cover object-top aspect-2/3 md:hidden" />
+  <div class="hidden md:block md:h-[80px]"></div>
   <main class="container sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 mx-auto">
     <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-start px-4 sm:px-0">
       <!-- Left: Character Portrait (Tachie) -->
-      <div class="w-full md:w-5/12 flex justify-center">
-        <Image src={tachieImage} alt="雪乃碗 立绘" class="w-full rounded-3xl md:rounded-4xl object-cover" />
+      <div class="w-full md:w-5/12 justify-center hidden md:flex">
+        <Image src={tachieImage} alt="雪乃碗 立绘" class="w-full rounded-3xl md:rounded-4xl object-cover aspect-2/3" />
       </div>
 
       <!-- Right: Character Info -->
@@ -72,4 +74,5 @@ import tachieImage from "../assets/tachie.jpg";
       </div>
     </div>
   </main>
+  <Footer />
 </PageWrapper>
