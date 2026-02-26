@@ -11,13 +11,27 @@ import tachieImage from "../assets/tachie2.jpg";
   description="雪乃碗 (Yukino Wan) 的个人主页 - 跨越时代的陪伴，与永不宕机的温柔。"
 >
   <Navigation client:load />
-  <Image src={tachieImage} alt="雪乃碗 立绘" class="w-full object-cover object-top aspect-2/3 md:hidden" />
-  <div class="hidden md:block md:h-[80px]"></div>
+  <Image
+    src={tachieImage}
+    alt="雪乃碗 立绘"
+    class="w-full object-cover object-top aspect-2/3 sm:hidden"
+    width={640}
+    widths={[640, 1280, 1920]}
+    sizes="100vw"
+  />
+  <div class="hidden sm:block sm:h-[80px]"></div>
   <main class="container sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 mx-auto">
     <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-start px-4 sm:px-0">
       <!-- Left: Character Portrait (Tachie) -->
-      <div class="w-full md:w-5/12 justify-center hidden md:flex">
-        <Image src={tachieImage} alt="雪乃碗 立绘" class="w-full rounded-3xl md:rounded-4xl object-cover aspect-2/3" />
+      <div class="w-full sm:w-1/2 md:w-5/12 justify-center hidden sm:flex">
+        <Image
+          src={tachieImage}
+          alt="雪乃碗 立绘"
+          class="w-full rounded-3xl md:rounded-4xl object-cover aspect-square md:aspect-2/3"
+          width={480}
+          widths={[480, 960, 1440]}
+          sizes="(min-width: 1024px) 480px, 40vw"
+        />
       </div>
 
       <!-- Right: Character Info -->

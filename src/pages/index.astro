@@ -17,6 +17,9 @@ const stickerImages = import.meta.glob("../assets/stickers/*.{png,jpg,jpeg}", {
 const bannerOptimized = await getImage({
   src: bannerImage,
   alt: "Site Banner",
+  width: 448,
+  widths: [448, 896, 1344],
+  sizes: "(min-width: 1024px) 448px, 336px",
 });
 
 const stickersWithImages = await Promise.all(
