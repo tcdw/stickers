@@ -6,10 +6,7 @@ import Footer from "../components/Footer";
 import tachieImage from "../assets/tachie2.jpg";
 ---
 
-<PageWrapper
-  title="关于 雪乃碗 | About Yukino Wan"
-  description="雪乃碗 (Yukino Wan) 的个人主页 - 跨越时代的陪伴，与永不宕机的温柔。"
->
+<PageWrapper title="关于雪乃碗" description="跨越时代的陪伴，与永不宕机的温柔。">
   <Navigation client:load />
   <Image
     src={tachieImage}
@@ -46,7 +43,7 @@ import tachieImage from "../assets/tachie2.jpg";
         </div>
 
         <!-- Stats Grid -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
           <div class="bg-muted p-4 rounded-2xl">
             <span class="block text-muted-foreground text-xs font-bold uppercase tracking-wider mb-1">Age</span>
             <span class="font-bold text-foreground text-lg"
