@@ -96,3 +96,12 @@ img.twemoji {
 [data-sonner-toaster] {
   font-family: unset;
 }
+
+/* ============================================
+   View Transitions
+   ============================================ */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 200ms;
+}
