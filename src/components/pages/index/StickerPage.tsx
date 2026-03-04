@@ -2,7 +2,6 @@ import { useMemo, useState, type ImgHTMLAttributes } from "react";
 import { Toaster } from "sonner";
 
 import Footer from "../../Footer";
-import Navigation from "../../Navigation";
 import StickerCardButton from "./StickerCardButton";
 import StickerFilter, { type StickerType } from "./StickerFilter";
 
@@ -99,7 +98,6 @@ export default function StickerPage({ banner, stickers }: Props) {
           },
         }}
       />
-      <Navigation />
       <header>
         <div className="container sm:px-6 lg:px-8 pb-8 sm:pb-10 md:pb-12">
           <div

@@ -1,15 +1,17 @@
 ---
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
+import Navigation from "./Navigation";
 
 export interface Props {
   title: string;
   description: string;
   robots?: string;
   lang?: string;
+  showNavigation?: boolean;
 }
 
-const { title, description, robots, lang = "zh-CN" } = Astro.props;
+const { title, description, robots, lang = "zh-CN", showNavigation = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -43,6 +45,13 @@ const { title, description, robots, lang = "zh-CN" } = Astro.props;
     />
   </head>
   <body class="min-h-screen text-primary">
+    {
+      showNavigation ? (
+        <div transition:persist="site-navigation">
+          <Navigation client:load />
+        </div>
+      ) : null
+    }
     <slot />
   </body>
 </html>
