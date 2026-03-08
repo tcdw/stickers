@@ -1,0 +1,46 @@
+---
+import Footer from "../components/Footer";
+import PageWrapper from "../components/PageWrapper.astro";
+---
+
+<PageWrapper title="壁纸 | 雪乃碗" description="雪乃碗壁纸页面。" showNavigation>
+  <div class="hidden sm:block sm:h-[80px]"></div>
+
+  <main class="container px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+    <section class="banner overflow-hidden rounded-3xl bg-muted px-6 py-10 sm:px-10 sm:py-14 lg:px-14 lg:py-18">
+      <div class="max-w-3xl space-y-5">
+        <span
+          class="inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-accent-700 shadow-sm ring-1 ring-black/5"
+        >
+          Wallpapers
+        </span>
+        <div class="space-y-3">
+          <h1 class="text-4xl font-bold text-foreground sm:text-5xl lg:text-6xl">壁纸</h1>
+          <p class="text-base leading-8 text-muted-foreground sm:text-lg">
+            这个页面先放出来啦，后续会慢慢补上适配桌面与移动端的官方壁纸。先别急着催，人家已经把入口打开了哦。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-10 grid gap-4 md:grid-cols-2 sm:mt-12">
+      <article class="rounded-3xl bg-white p-6 shadow-lg shadow-black/5 ring-1 ring-black/5 sm:p-8">
+        <h2 class="text-2xl font-bold text-foreground">计划方向</h2>
+        <ul class="mt-4 space-y-3 text-muted-foreground">
+          <li>• 桌面端 16:9 与 16:10 壁纸</li>
+          <li>• 手机竖屏壁纸</li>
+          <li>• 与贴纸同主题的视觉延展</li>
+        </ul>
+      </article>
+
+      <article class="rounded-3xl bg-white p-6 shadow-lg shadow-black/5 ring-1 ring-black/5 sm:p-8">
+        <h2 class="text-2xl font-bold text-foreground">当前状态</h2>
+        <p class="mt-4 leading-7 text-muted-foreground">
+          页面已经可以正常访问，导航也不再是假按钮。等素材整理好之后，这里会直接替换成正式内容。
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <Footer />
+</PageWrapper>

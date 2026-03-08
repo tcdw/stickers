@@ -1,0 +1,145 @@
+---
+import Footer from "../components/Footer";
+import PageWrapper from "../components/PageWrapper.astro";
+import ColorPalette from "../components/pages/design/ColorPalette";
+
+const palettes = [
+  {
+    title: "主色 / Primary",
+    description: "站点里的冷调主视觉颜色，适合按钮、强调信息与高亮反馈。",
+    colors: [
+      { name: "Primary 50", token: "--color-primary-50", value: "#ecfdff" },
+      { name: "Primary 100", token: "--color-primary-100", value: "#cef7ff" },
+      { name: "Primary 200", token: "--color-primary-200", value: "#a3edfe" },
+      { name: "Primary 300", token: "--color-primary-300", value: "#66dffc" },
+      { name: "Primary 400", token: "--color-primary-400", value: "#1ec6f2" },
+      { name: "Primary 500", token: "--color-primary-500", value: "#02a9d8" },
+      { name: "Primary 600", token: "--color-primary-600", value: "#0585b5" },
+      { name: "Primary 700", token: "--color-primary-700", value: "#0b6c93" },
+      { name: "Primary 800", token: "--color-primary-800", value: "#135777" },
+      { name: "Primary 900", token: "--color-primary-900", value: "#144965" },
+      { name: "Primary 950", token: "--color-primary-950", value: "#072f45" },
+    ],
+  },
+  {
+    title: "辅助色 / Accent",
+    description: "OC 服装与情绪点缀的暖调辅助色，适合提示、点缀和局部强调。",
+    colors: [
+      { name: "Accent 50", token: "--color-accent-50", value: "#fff7ed" },
+      { name: "Accent 100", token: "--color-accent-100", value: "#ffeed4" },
+      { name: "Accent 200", token: "--color-accent-200", value: "#ffd9a8" },
+      { name: "Accent 300", token: "--color-accent-300", value: "#ffbd71" },
+      { name: "Accent 400", token: "--color-accent-400", value: "#ffa453" },
+      { name: "Accent 500", token: "--color-accent-500", value: "#fe7711" },
+      { name: "Accent 600", token: "--color-accent-600", value: "#ef5c07" },
+      { name: "Accent 700", token: "--color-accent-700", value: "#c64308" },
+      { name: "Accent 800", token: "--color-accent-800", value: "#9d360f" },
+      { name: "Accent 900", token: "--color-accent-900", value: "#7e2e10" },
+      { name: "Accent 950", token: "--color-accent-950", value: "#441406" },
+    ],
+  },
+];
+
+const paddingSpecs = [
+  {
+    title: "44px（常用）",
+    description: "角色主体最稳妥的安全区，适合绝大多数标准贴纸构图。",
+  },
+  {
+    title: "32px（涉及非人物元素）",
+    description: "当画面里有道具、文字或外延元素时，可以适当收紧一点。",
+  },
+  {
+    title: "24px（极限）",
+    description: "只建议在构图真的很满的时候使用，再小就容易显得挤。",
+  },
+];
+---
+
+<PageWrapper title="设计规范 | 雪乃碗" description="雪乃碗站点视觉与贴纸图片设计规范。" showNavigation>
+  <div class="hidden sm:block sm:h-[80px]"></div>
+
+  <main class="container px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+    <section class="banner overflow-hidden rounded-3xl bg-muted px-6 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-16">
+      <div class="max-w-3xl space-y-5">
+        <span
+          class="inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary-700 shadow-sm ring-1 ring-black/5"
+        >
+          Design System
+        </span>
+        <div class="space-y-3">
+          <h1 class="text-4xl font-bold text-foreground sm:text-5xl lg:text-6xl">设计规范</h1>
+          <p class="text-base leading-8 text-muted-foreground sm:text-lg">
+            这里整理了站点当前使用的主色、辅助色，以及贴纸导出时建议遵循的图片规范。颜色卡片支持直接点击复制 Hex。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-10 space-y-6 sm:mt-12">
+      <div class="space-y-2">
+        <h2 class="text-3xl font-bold text-foreground">调色盘</h2>
+        <p class="text-muted-foreground">颜色数值与命名均来自全局主题变量，方便直接拿去做视觉稿或前端实现。</p>
+      </div>
+
+      <ColorPalette client:load palettes={palettes} />
+    </section>
+
+    <section class="mt-12 space-y-6 sm:mt-16">
+      <div class="space-y-2">
+        <h2 class="text-3xl font-bold text-foreground">贴纸图片设计规范</h2>
+        <p class="text-muted-foreground">单位均为 72ppi 语境下的像素，也可以直接理解为 Web CSS 中的逻辑像素。</p>
+      </div>
+
+      <div class="grid gap-4 lg:grid-cols-2">
+        <article class="rounded-3xl bg-white p-6 shadow-lg shadow-black/5 ring-1 ring-black/5 sm:p-8">
+          <div class="space-y-3">
+            <span class="inline-flex rounded-full bg-primary-50 px-3 py-1 text-sm font-semibold text-primary-700"
+              >图片尺寸</span
+            >
+            <h3 class="text-2xl font-bold text-foreground">1024 × 1024 → 512 × 512</h3>
+            <p class="leading-7 text-muted-foreground">
+              源文件统一使用 1024 × 1024，方便保留更好的编辑余量。最终发布文件导出为 512 × 512，兼顾清晰度与加载体积。
+            </p>
+          </div>
+        </article>
+
+        <article class="rounded-3xl bg-white p-6 shadow-lg shadow-black/5 ring-1 ring-black/5 sm:p-8">
+          <div class="space-y-3">
+            <span class="inline-flex rounded-full bg-accent-50 px-3 py-1 text-sm font-semibold text-accent-700"
+              >白边尺寸</span
+            >
+            <h3 class="text-2xl font-bold text-foreground">10px</h3>
+            <p class="leading-7 text-muted-foreground">
+              如果贴纸包含常规白边，建议白边厚度统一保持在 10px。若最终导出不带白边，记得在原本内边距基础上额外 +10px。
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="rounded-3xl bg-white p-6 shadow-lg shadow-black/5 ring-1 ring-black/5 sm:p-8">
+        <div class="space-y-6">
+          <div class="space-y-2">
+            <h3 class="text-2xl font-bold text-foreground">四边内边距</h3>
+            <p class="text-muted-foreground">
+              以下数值默认以“包含白边”为前提；如果不做白边，请在对应数值上额外增加 10px。
+            </p>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-3">
+            {
+              paddingSpecs.map(spec => (
+                <article class="rounded-2xl bg-muted p-5">
+                  <h4 class="text-lg font-bold text-foreground">{spec.title}</h4>
+                  <p class="mt-2 text-sm leading-7 text-muted-foreground">{spec.description}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</PageWrapper>
