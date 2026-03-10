@@ -56,27 +56,23 @@ const paddingSpecs = [
 ];
 ---
 
-<PageWrapper title="设计规范 | 雪乃碗" description="雪乃碗站点视觉与贴纸图片设计规范。" showNavigation>
-  <div class="hidden sm:block sm:h-[80px]"></div>
-
-  <main class="container px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-    <section class="banner overflow-hidden rounded-3xl bg-muted px-6 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-16">
-      <div class="max-w-3xl space-y-5">
-        <span
-          class="inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary-700 shadow-sm ring-1 ring-black/5"
-        >
-          Design System
-        </span>
-        <div class="space-y-3">
+<PageWrapper title="设计规范" description="雪乃碗站点视觉与贴纸图片设计规范。" showNavigation>
+  <header class="container sm:px-6 lg:px-8">
+    <div
+      class="banner overflow-hidden sm:rounded-b-3xl md:rounded-b-4xl bg-muted px-6 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-16"
+    >
+      <div class="max-w-3xl space-y-5 mt-32">
+        <div class="space-y-6">
           <h1 class="text-4xl font-bold text-foreground sm:text-5xl lg:text-6xl">设计规范</h1>
-          <p class="text-base leading-8 text-muted-foreground sm:text-lg">
+          <p class="text-base leading-relaxed text-muted-foreground sm:text-lg">
             这里整理了站点当前使用的主色、辅助色，以及贴纸导出时建议遵循的图片规范。颜色卡片支持直接点击复制 Hex。
           </p>
         </div>
       </div>
-    </section>
-
-    <section class="mt-10 space-y-6 sm:mt-12">
+    </div>
+  </header>
+  <main class="container px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
+    <section class="space-y-6">
       <div class="space-y-2">
         <h2 class="text-3xl font-bold text-foreground">调色盘</h2>
         <p class="text-muted-foreground">颜色数值与命名均来自全局主题变量，方便直接拿去做视觉稿或前端实现。</p>
