@@ -35,6 +35,11 @@ async function copyText(text: string) {
   document.body.removeChild(textarea);
 }
 
+function getShadeFromName(name: string): string {
+  const match = name.match(/\d+$/);
+  return match ? match[0] : name;
+}
+
 export default function ColorPalette({ palettes }: Props) {
   const handleCopy = async (color: PaletteColor) => {
     try {
@@ -66,34 +71,24 @@ export default function ColorPalette({ palettes }: Props) {
 
       <div className="space-y-8">
         {palettes.map(palette => (
-          <section key={palette.title} className="space-y-4">
-            <div className="space-y-1">
-              <h3 className="text-2xl font-bold text-foreground">{palette.title}</h3>
-              <p className="text-sm text-muted-foreground">{palette.description}</p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <section key={palette.title}>
+            <h3 className="mb-3 text-sm font-semibold text-foreground">{palette.title}</h3>
+            <div className="grid grid-cols-5 gap-x-2 gap-y-1.5 sm:grid-cols-11 2xl:gap-x-3">
               {palette.colors.map(color => (
                 <button
                   key={color.token}
                   type="button"
                   onClick={() => handleCopy(color)}
-                  className="group overflow-hidden rounded-3xl bg-white text-left shadow-lg shadow-black/5 ring-1 ring-black/5 transition-transform duration-200 hover:-translate-y-1 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+                  className="group cursor-pointer text-left focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-primary-400"
                   aria-label={`复制 ${color.name} ${color.value}`}
                 >
-                  <div className="h-28 w-full" style={{ backgroundColor: color.value }} aria-hidden="true" />
-                  <div className="space-y-3 p-5">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <p className="text-lg font-bold text-foreground">{color.name}</p>
-                        <p className="text-sm text-muted-foreground">{color.token}</p>
-                      </div>
-                      <span className="rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold text-primary-700 transition-colors group-hover:bg-primary-100">
-                        点击复制
-                      </span>
-                    </div>
-                    <p className="font-mono text-sm text-gray-700">{color.value}</p>
-                  </div>
+                  <div
+                    className="mb-1.5 h-10 w-full rounded-md ring-1 ring-black/10 ring-inset transition-shadow group-hover:ring-black/25 sm:rounded-lg 2xl:h-12"
+                    style={{ backgroundColor: color.value }}
+                    aria-hidden="true"
+                  />
+                  <p className="text-xs font-medium text-foreground">{getShadeFromName(color.name)}</p>
+                  <p className="font-mono text-xs text-muted-foreground">{color.value}</p>
                 </button>
               ))}
             </div>
