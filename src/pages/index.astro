@@ -23,34 +23,36 @@ const bannerOptimized = await getImage({
 });
 
 const stickersWithImages = await Promise.all(
-  stickers.map(async sticker => {
-    const image = stickerImages[`../assets/stickers/${sticker.file}`];
+  stickers
+    .filter(s => s.isEnabled !== false)
+    .map(async sticker => {
+      const image = stickerImages[`../assets/stickers/${sticker.file}`];
 
-    if (!image) {
-      throw new Error(`Missing sticker image: ${sticker.file}`);
-    }
+      if (!image) {
+        throw new Error(`Missing sticker image: ${sticker.file}`);
+      }
 
-    const optimized = await getImage({
-      src: image,
-      alt: sticker.alt,
-      width: 512,
-      height: 512,
-      widths: [160, 240, 320, 480, 640],
-      sizes: "(min-width: 1024px) 240px, (min-width: 768px) 200px, 45vw",
-      loading: "lazy",
-      decoding: "async",
-    });
+      const optimized = await getImage({
+        src: image,
+        alt: sticker.alt,
+        width: 512,
+        height: 512,
+        widths: [160, 240, 320, 480, 640],
+        sizes: "(min-width: 1024px) 240px, (min-width: 768px) 200px, 45vw",
+        loading: "lazy",
+        decoding: "async",
+      });
 
-    return {
-      ...sticker,
-      image: {
-        src: optimized.src,
-        srcSet: optimized.srcSet.attribute,
-        attributes: optimized.attributes,
-      },
-      copySrc: image.src,
-    };
-  }),
+      return {
+        ...sticker,
+        image: {
+          src: optimized.src,
+          srcSet: optimized.srcSet.attribute,
+          attributes: optimized.attributes,
+        },
+        copySrc: image.src,
+      };
+    }),
 );
 ---
 

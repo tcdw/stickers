@@ -28,9 +28,6 @@ const StickerSchema = z.object({
   alt: z.string().min(1).max(50).describe("贴纸的中文描述（用于无障碍），简短有力"),
   tags: z.array(z.string()).min(1).max(5).describe("相关的标签关键词，用于搜索和分类"),
   isHug: z.boolean().describe("是否为贴贴贴纸（与其他角色互动/拥抱的图片）"),
-  mood: z
-    .enum(["happy", "sad", "angry", "surprised", "loving", "silly", "calm", "excited", "confused", "neutral"])
-    .describe("贴纸传达的主要情绪"),
 });
 
 type StickerMetadata = z.infer<typeof StickerSchema>;
@@ -42,10 +39,10 @@ interface StickerData {
   alt: string;
   tags: string[];
   isHug: boolean;
-  mood: string;
+  isEnabled: boolean;
 }
 
-type CachedSticker = Omit<StickerData, "mood"> & { mood?: string };
+type CachedSticker = StickerData;
 
 const STICKERS_DIR = join(process.cwd(), "src", "assets", "stickers");
 const OUTPUT_FILE = join(process.cwd(), "src", "data", "stickers-generated.ts");
@@ -93,7 +90,6 @@ async function analyzeSticker(imagePath: string): Promise<StickerMetadata> {
 2. alt: 用简短有力的中文描述这张贴纸（10字以内），用于无障碍访问
 3. tags: 提供 3-5 个相关的标签关键词，用于搜索和分类
 4. isHug: 判断是否为「贴贴贴纸」——即图片中雪乃碗与另一个角色互动/拥抱的贴纸
-5. mood: 判断贴纸传达的主要情绪
 
 请确保描述准确、有趣，符合中文网络文化。`,
           },
@@ -136,17 +132,6 @@ async function loadExistingMetadata(): Promise<Map<string, CachedSticker>> {
     const mod = await import(moduleUrl);
 
     const stickers: unknown[] = Array.isArray(mod.stickers) ? mod.stickers : [];
-    const stickersByMood = mod.stickersByMood && typeof mod.stickersByMood === "object" ? mod.stickersByMood : {};
-
-    const moodById = new Map<string, string>();
-    for (const [mood, items] of Object.entries(stickersByMood)) {
-      if (!Array.isArray(items)) continue;
-      for (const item of items) {
-        if (item && typeof item.id === "string") {
-          moodById.set(item.id, mood);
-        }
-      }
-    }
 
     const cached = new Map<string, CachedSticker>();
     for (const s of stickers) {
@@ -168,7 +153,10 @@ async function loadExistingMetadata(): Promise<Map<string, CachedSticker>> {
         alt,
         tags,
         isHug: typeof (s as { isHug?: unknown }).isHug === "boolean" ? (s as { isHug: boolean }).isHug : false,
-        mood: moodById.get(id),
+        isEnabled:
+          typeof (s as { isEnabled?: unknown }).isEnabled === "boolean"
+            ? (s as { isEnabled: boolean }).isEnabled
+            : true,
       });
     }
 
@@ -203,7 +191,7 @@ async function main() {
   const fileSet = new Set(pngFiles);
   const pendingFiles = pngFiles.filter(file => {
     const cached = existingMetadata.get(file);
-    return !cached || !cached.mood;
+    return !cached;
   });
   const hasRemovedFiles = Array.from(existingMetadata.keys()).some(file => !fileSet.has(file));
 
@@ -233,7 +221,7 @@ async function main() {
     console.log(`[${i + 1}/${pngFiles.length}] 处理 ${file}...`);
 
     const cached = existingMetadata.get(file);
-    if (cached && cached.mood) {
+    if (cached) {
       stickers.push({
         id: cached.id,
         file: cached.file,
@@ -241,17 +229,13 @@ async function main() {
         alt: cached.alt,
         tags: cached.tags,
         isHug: cached.isHug,
-        mood: cached.mood,
+        isEnabled: cached.isEnabled,
       });
 
       const summary = cached.emoji.length > 0 ? `${cached.emoji.join(" ")} ${cached.alt}` : cached.alt;
       console.log(`   ♻️ 已存在，跳过分析 ${summary ? `(${summary})` : ""}`);
       console.log("");
       continue;
-    }
-
-    if (cached && !cached.mood) {
-      console.log("   ⚠️ 已有 metadata，但缺少 mood，重新分析...");
     }
 
     try {
@@ -265,7 +249,7 @@ async function main() {
         alt: metadata.alt,
         tags: metadata.tags,
         isHug: metadata.isHug,
-        mood: metadata.mood,
+        isEnabled: true,
       });
 
       console.log(`   ✅ ${metadata.emoji.join(" ")} ${metadata.alt}`);
@@ -310,6 +294,7 @@ function generateTsFile(stickers: StickerData[]): string {
     alt: '${s.alt}',
     tags: [${s.tags.map(t => `'${t}'`).join(", ")}],
     isHug: ${s.isHug},
+    isEnabled: ${s.isEnabled},
   }`,
     )
     .join(",\n");
@@ -338,18 +323,13 @@ export interface Sticker {
   tags: string[];
   /** 是否为贴贴贴纸（与其他角色互动） */
   isHug: boolean;
+  /** 是否启用 */
+  isEnabled: boolean;
 }
 
 export const stickers: Sticker[] = [
 ${stickerObjects}
 ];
-
-/**
- * 按情绪分类的贴纸
- */
-export const stickersByMood: Record<string, Sticker[]> = {
-${generateMoodGroups(stickers)}
-};
 
 /**
  * Telegram 贴纸包链接
@@ -390,27 +370,6 @@ export const platforms = [
   },
 ] as const;
 `;
-}
-
-/**
- * 生成按情绪分组的代码
- */
-function generateMoodGroups(stickers: StickerData[]): string {
-  const groups: Record<string, StickerData[]> = {};
-
-  for (const s of stickers) {
-    if (!groups[s.mood]) groups[s.mood] = [];
-    groups[s.mood].push(s);
-  }
-
-  const entries = Object.entries(groups);
-  if (entries.length === 0) return "";
-
-  return entries
-    .map(
-      ([mood, items]) => `  ${mood}: stickers.filter(s => [${items.map(i => `'${i.id}'`).join(", ")}].includes(s.id)),`,
-    )
-    .join("\n");
 }
 
 // 运行
