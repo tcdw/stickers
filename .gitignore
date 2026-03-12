@@ -24,3 +24,8 @@ pnpm-debug.log*
 .idea/
 
 .githooks
+
+.agents
+.claude
+skills-lock.json
+!.agents/skills/yukino-wan
