@@ -39,21 +39,6 @@ const palettes = [
     ],
   },
 ];
-
-const paddingSpecs = [
-  {
-    title: "44px（常用）",
-    description: "角色主体最稳妥的安全区，适合绝大多数标准贴纸构图。",
-  },
-  {
-    title: "32px（涉及非人物元素）",
-    description: "当画面里有道具、文字或外延元素时，可以适当收紧一点。",
-  },
-  {
-    title: "24px（极限）",
-    description: "只建议在构图真的很满的时候使用，再小就容易显得挤。",
-  },
-];
 ---
 
 <PageWrapper title="设计规范" description="雪乃碗站点视觉与贴纸图片设计规范。" showNavigation>
@@ -71,67 +56,63 @@ const paddingSpecs = [
       </div>
     </div>
   </header>
-  <main class="container px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
+  <main class="container px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12 space-y-12">
     <section class="space-y-6">
-      <div class="space-y-3">
-        <h2 class="text-3xl font-bold text-foreground">调色盘</h2>
-        <p class="text-muted-foreground">颜色数值与命名均来自全局主题变量，方便直接拿去做视觉稿或前端实现。</p>
-      </div>
-
+      <h2 class="text-xl font-semibold text-foreground">调色盘 / Color Palette</h2>
       <ColorPalette client:load palettes={palettes} />
     </section>
 
-    <section class="mt-12 space-y-6 sm:mt-16">
-      <div class="space-y-3">
-        <h2 class="text-3xl font-bold text-foreground">贴纸图片设计规范</h2>
-        <p class="text-muted-foreground">单位均为 72ppi 语境下的像素，也可以直接理解为 Web CSS 中的逻辑像素。</p>
+    <section class="space-y-8">
+      <div class="space-y-2">
+        <h2 class="text-xl font-semibold text-foreground">贴纸导出规范 / Sticker Specs</h2>
+        <p class="text-muted-foreground">单位均为逻辑像素（px）。源文件建议保留 2 倍图以防后期调整。</p>
       </div>
 
-      <div class="grid gap-4 lg:grid-cols-2">
-        <article class="rounded-3xl bg-white p-6 ring-1 ring-black/5 sm:p-8">
-          <div class="space-y-3">
-            <span class="inline-flex rounded-full bg-primary-50 px-3 py-1 text-sm font-semibold text-primary-700"
-              >图片尺寸</span
-            >
-            <h3 class="text-2xl font-bold text-foreground">1024 × 1024 → 512 × 512</h3>
-            <p class="leading-7 text-muted-foreground">
-              源文件统一使用 1024 × 1024，方便保留更好的编辑余量。最终发布文件导出为 512 × 512，兼顾清晰度与加载体积。
-            </p>
-          </div>
-        </article>
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- 基础尺寸 -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-medium text-muted-foreground uppercase tracking-wider">Canvas</h3>
+          <dl class="space-y-4">
+            <div>
+              <dt class="sr-only">源文件尺寸</dt>
+              <dd class="text-2xl font-mono text-foreground">1024 × 1024</dd>
+              <dd class="text-sm text-muted-foreground mt-1">编辑源文件</dd>
+            </div>
+            <div>
+              <dt class="sr-only">导出尺寸</dt>
+              <dd class="text-2xl font-mono text-foreground">512 × 512</dd>
+              <dd class="text-sm text-muted-foreground mt-1">最终产物</dd>
+            </div>
+          </dl>
+        </div>
 
-        <article class="rounded-3xl bg-white p-6 ring-1 ring-black/5 sm:p-8">
-          <div class="space-y-3">
-            <span class="inline-flex rounded-full bg-accent-50 px-3 py-1 text-sm font-semibold text-accent-700"
-              >白边尺寸</span
-            >
-            <h3 class="text-2xl font-bold text-foreground">10px</h3>
-            <p class="leading-7 text-muted-foreground">
-              如果贴纸包含常规白边，建议白边厚度统一保持在 10px。若最终导出不带白边，记得在原本内边距基础上额外 +10px。
-            </p>
-          </div>
-        </article>
-      </div>
+        <!-- 边距与白边 -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-medium text-muted-foreground uppercase tracking-wider">Metrics</h3>
+          <dl class="space-y-4">
+            <div>
+              <dt class="font-medium text-foreground">白边 (Stroke)</dt>
+              <dd class="text-sm text-muted-foreground mt-1">10px <code>#FFFFFF</code></dd>
+            </div>
+            <div>
+              <dt class="font-medium text-foreground">标准内边距</dt>
+              <dd class="text-sm text-muted-foreground mt-1">44px</dd>
+            </div>
+            <div>
+              <dt class="font-medium text-foreground">紧凑内边距</dt>
+              <dd class="text-sm text-muted-foreground mt-1">32px</dd>
+            </div>
+          </dl>
+        </div>
 
-      <div class="rounded-3xl bg-white p-6 ring-1 ring-black/5 sm:p-8">
-        <div class="space-y-6">
-          <div class="space-y-2">
-            <h3 class="text-2xl font-bold text-foreground">四边内边距</h3>
-            <p class="text-muted-foreground">
-              以下数值默认以“包含白边”为前提；如果不做白边，请在对应数值上额外增加 10px。
-            </p>
-          </div>
-
-          <div class="grid gap-4 md:grid-cols-3">
-            {
-              paddingSpecs.map(spec => (
-                <article class="rounded-2xl bg-muted p-5">
-                  <h4 class="text-lg font-bold text-foreground">{spec.title}</h4>
-                  <p class="mt-2 text-sm leading-7 text-muted-foreground">{spec.description}</p>
-                </article>
-              ))
-            }
-          </div>
+        <!-- 备注 -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-medium text-muted-foreground uppercase tracking-wider">Notes</h3>
+          <ul class="text-sm text-muted-foreground space-y-3 leading-normal">
+            <li>• 所有内边距数值均包含白边。若不做白边，请额外增加 10px 留白。</li>
+            <li>• 避免关键元素（如眼睛、文字）贴近裁切边缘。</li>
+            <li>• 导出格式推荐 WebP 或 PNG 32-bit。</li>
+          </ul>
         </div>
       </div>
     </section>

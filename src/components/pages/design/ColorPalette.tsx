@@ -73,7 +73,7 @@ export default function ColorPalette({ palettes }: Props) {
         {palettes.map(palette => (
           <section key={palette.title}>
             <h3 className="mb-3 text-sm font-semibold text-foreground">{palette.title}</h3>
-            <div className="grid grid-cols-5 gap-x-2 gap-y-1.5 sm:grid-cols-11 2xl:gap-x-3">
+            <div className="grid grid-cols-3 gap-x-3 gap-y-2 sm:grid-cols-11 2xl:gap-x-3">
               {palette.colors.map(color => (
                 <button
                   key={color.token}
