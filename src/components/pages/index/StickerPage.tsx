@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import Footer from "../../Footer";
 import StickerCardButton from "./StickerCardButton";
 import StickerFilter, { type StickerType } from "./StickerFilter";
+import { TELEGRAM_STICKER_URL } from "../../../data/stickers-generated";
 
 type OptimizedImage = {
   src: string;
@@ -104,9 +105,43 @@ export default function StickerPage({ banner, stickers }: Props) {
             id="navBackground"
             className="md:h-128 relative flex flex-col justify-center sm:justify-end bg-muted sm:rounded-b-3xl md:rounded-b-4xl banner"
           >
-            <div className="flex flex-col items-center py-16 mt-22 md:ps-12 md:pb-12 md:items-start md:mt-0">
-              <h1 className="text-4xl text-foreground sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">雪乃碗的贴纸</h1>
+            <div className="flex flex-col items-center py-16 mt-22 md:ps-12 md:pb-12 md:items-start md:mt-0 gap-4 sm:gap-6">
+              <h1 className="text-4xl text-foreground sm:text-5xl lg:text-6xl font-bold">雪乃碗的贴纸</h1>
               <p className="text-lg text-muted-foreground">点击复制，随处贴贴</p>
+              <div className="flex items-center justify-center md:justify-start flex-wrap gap-4 px-4 md:px-0">
+                <a
+                  className="inline-flex items-center justify-center rounded-full bg-primary-700 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+                  href={"https://t.me/addstickers/yukinowan"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg
+                    className="h-5 w-5 mr-2.5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z" />
+                  </svg>
+                  Telegram
+                </a>
+                <a
+                  className="inline-flex items-center justify-center rounded-full bg-primary-700 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-primary-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+                  href={"https://t.me/addstickers/YukinoWanFriends"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg
+                    className="h-5 w-5 mr-2.5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z" />
+                  </svg>
+                  Telegram (贴贴篇)
+                </a>
+              </div>
             </div>
             <img {...bannerProps} />
           </div>
