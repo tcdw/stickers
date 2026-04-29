@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+#!/usr/bin/env -S node --experimental-strip-types
 /**
  * 下载 Twemoji SVG 到本地 public/twemoji
  *

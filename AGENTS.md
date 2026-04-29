@@ -41,7 +41,7 @@
 - React（Astro Islands）
 - Tailwind CSS v4
 - TypeScript
-- 使用 Bun
+- 使用 pnpm（Node.js 原生 TypeScript 支持）
 
 ## 目录约定
 
@@ -55,61 +55,34 @@
 
 ## 常用命令
 
-- `bun install`
-- `bun dev`
-- `bun build`
-- `bun preview`
+- `pnpm install`
+- `pnpm dev`
+- `pnpm build`
+- `pnpm preview`
 
 ## 贴纸工作流
 
 - 将贴纸图片放入 `src/assets/stickers/`（PNG/JPG）
 - 自动生成 metadata（推荐）：
   - 设置 `GOOGLE_GENERATIVE_AI_API_KEY` 或 `GEMINI_API_KEY`
-  - 运行 `bun generate-metadata`
+  - 运行 `pnpm generate-metadata`
   - 脚本会生成/更新 `src/data/stickers-generated.ts`
 - `src/data/stickers-generated.ts` 可手动微调，但再次运行脚本会覆盖
 
 ## Twemoji 资源
 
-- 运行 `bun fetch-twemoji` 以下载贴纸对应 emoji 的 SVG
+- 运行 `pnpm fetch-twemoji` 以下载贴纸对应 emoji 的 SVG
 - 可选环境变量：`TWEMOJI_VERSION`、`TWEMOJI_BASE_URL`
 
 ## 脚本编写
 
-Default to using Bun instead of Node.js.
+Use Node.js native TypeScript support (`--experimental-strip-types`) to run `.ts` files.
 
-- Use `bun <file>` instead of `node <file>` or `ts-node <file>`
-- Use `bun test` instead of `jest` or `vitest`
-- Use `bun install` instead of `npm install` or `yarn install` or `pnpm install`
-- Use `bun run <script>` instead of `npm run <script>` or `yarn run <script>` or `pnpm run <script>`
-- Use `bunx <package> <command>` instead of `npx <package> <command>`
-- Bun automatically loads .env, so don't use dotenv.
-
-### APIs
-
-- `Bun.serve()` supports WebSockets, HTTPS, and routes. Don't use `express`.
-- `bun:sqlite` for SQLite. Don't use `better-sqlite3`.
-- `Bun.redis` for Redis. Don't use `ioredis`.
-- `Bun.sql` for Postgres. Don't use `pg` or `postgres.js`.
-- `WebSocket` is built-in. Don't use `ws`.
-- Prefer `Bun.file` over `node:fs`'s readFile/writeFile
-- Bun.$`ls` instead of execa.
-
-### Testing
-
-Use `bun test` to run tests.
-
-```ts#index.test.ts
-import { test, expect } from "bun:test";
-
-test("hello world", () => {
-  expect(1).toBe(1);
-});
-```
-
-For more information, read the Bun API docs in `node_modules/bun-types/docs/**.mdx`.
+- Use `node --experimental-strip-types <file>` instead of `bun <file>` or `tsx <file>`
+- Use `pnpm install` instead of `npm install` or `yarn install` or `bun install`
+- Use `pnpm run <script>` instead of `npm run <script>` or `yarn run <script>` or `bun run <script>`
 
 ## Git/提交规范
 
-- 启用 githooks：`bun setup-githooks`（或 `git config core.hooksPath .githooks`）
+- 启用 githooks：`pnpm setup-githooks`（或 `git config core.hooksPath .githooks`）
 - 提交信息使用 Conventional Commits（如 `feat(ui): add sticker filter`）

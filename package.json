@@ -7,10 +7,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-metadata": "bun run scripts/generate-sticker-metadata.ts",
-    "fetch-twemoji": "bun run scripts/fetch-twemoji.ts",
+    "generate-metadata": "node --experimental-strip-types scripts/generate-sticker-metadata.ts",
+    "fetch-twemoji": "node --experimental-strip-types scripts/fetch-twemoji.ts",
     "setup-githooks": "git config core.hooksPath .githooks",
-    "postinstall": "bun run setup-githooks"
+    "postinstall": "git config core.hooksPath .githooks"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.3",
@@ -21,6 +21,9 @@
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["sharp", "esbuild"]
   },
   "devDependencies": {
     "@ai-sdk/google": "^3.0.62",

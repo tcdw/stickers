@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+#!/usr/bin/env -S node --experimental-strip-types
 /**
  * 使用 Gemini Pro 多模态能力自动生成贴纸 Metadata
  *
