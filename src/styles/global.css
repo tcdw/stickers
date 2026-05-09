@@ -68,7 +68,7 @@ body {
 }
 
 .container-article {
-  @apply max-w-6xl mx-auto;
+  @apply max-w-4xl mx-auto;
 }
 
 .banner {

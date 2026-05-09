@@ -50,14 +50,17 @@ const palettes = [
       <div class="max-w-3xl space-y-5 mt-32">
         <div class="space-y-6">
           <h1 class="text-4xl font-bold text-foreground sm:text-5xl lg:text-6xl">设计规范</h1>
-          <p class="text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <!-- <p class="text-base leading-relaxed text-muted-foreground sm:text-lg">
             这里整理了站点当前使用的主色、辅助色，以及贴纸导出时建议遵循的图片规范。颜色卡片支持直接点击复制 Hex。
-          </p>
+          </p> -->
         </div>
       </div>
     </div>
   </header>
   <main class="container-article px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12 space-y-12">
+    <section class="prose prose-slate max-w-none dark:prose-invert">
+      <p>这里整理了站点当前使用的主色、辅助色，以及贴纸导出时建议遵循的图片规范。颜色卡片支持直接点击复制 Hex。</p>
+    </section>
     <section class="space-y-6">
       <h2 class="text-2xl font-semibold text-foreground">调色盘 / Color Palette</h2>
       <ColorPalette client:load palettes={palettes} />
