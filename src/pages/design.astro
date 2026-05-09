@@ -2,6 +2,7 @@
 import Footer from "../components/Footer";
 import PageWrapper from "../components/PageWrapper.astro";
 import ColorPalette from "../components/pages/design/ColorPalette";
+import { Content as StickerSpecs } from "../data/sticker-specs.md";
 
 const palettes = [
   {
@@ -56,66 +57,15 @@ const palettes = [
       </div>
     </div>
   </header>
-  <main class="container px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12 space-y-12">
+  <main class="container-article px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12 space-y-12">
     <section class="space-y-6">
-      <h2 class="text-xl font-semibold text-foreground">调色盘 / Color Palette</h2>
+      <h2 class="text-2xl font-semibold text-foreground">调色盘 / Color Palette</h2>
       <ColorPalette client:load palettes={palettes} />
     </section>
 
-    <section class="space-y-8">
-      <div class="space-y-2">
-        <h2 class="text-xl font-semibold text-foreground">贴纸导出规范 / Sticker Specs</h2>
-        <p class="text-muted-foreground">单位均为逻辑像素（px）。源文件建议保留 2 倍图以防后期调整。</p>
-      </div>
-
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- 基础尺寸 -->
-        <div class="space-y-4">
-          <h3 class="text-sm font-medium text-muted-foreground uppercase tracking-wider">Canvas</h3>
-          <dl class="space-y-4">
-            <div>
-              <dt class="sr-only">源文件尺寸</dt>
-              <dd class="text-2xl font-mono text-foreground">1024 × 1024</dd>
-              <dd class="text-sm text-muted-foreground mt-1">编辑源文件</dd>
-            </div>
-            <div>
-              <dt class="sr-only">导出尺寸</dt>
-              <dd class="text-2xl font-mono text-foreground">512 × 512</dd>
-              <dd class="text-sm text-muted-foreground mt-1">最终产物</dd>
-            </div>
-          </dl>
-        </div>
-
-        <!-- 边距与白边 -->
-        <div class="space-y-4">
-          <h3 class="text-sm font-medium text-muted-foreground uppercase tracking-wider">Metrics</h3>
-          <dl class="space-y-4">
-            <div>
-              <dt class="font-medium text-foreground">白边 (Stroke)</dt>
-              <dd class="text-sm text-muted-foreground mt-1">10px <code>#FFFFFF</code></dd>
-            </div>
-            <div>
-              <dt class="font-medium text-foreground">标准内边距</dt>
-              <dd class="text-sm text-muted-foreground mt-1">44px</dd>
-            </div>
-            <div>
-              <dt class="font-medium text-foreground">紧凑内边距</dt>
-              <dd class="text-sm text-muted-foreground mt-1">32px</dd>
-            </div>
-          </dl>
-        </div>
-
-        <!-- 备注 -->
-        <div class="space-y-4">
-          <h3 class="text-sm font-medium text-muted-foreground uppercase tracking-wider">Notes</h3>
-          <ul class="text-sm text-muted-foreground space-y-3 leading-normal">
-            <li>• 所有内边距数值均包含白边。若不做白边，请额外增加 10px 留白。</li>
-            <li>• 避免关键元素（如眼睛、文字）贴近裁切边缘。</li>
-            <li>• 导出格式推荐 WebP 或 PNG 32-bit。</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    <article class="prose prose-slate max-w-none dark:prose-invert">
+      <StickerSpecs />
+    </article>
   </main>
 
   <Footer />
