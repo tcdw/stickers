@@ -450,6 +450,15 @@ export const stickers: Sticker[] = [
     isHug: true,
     isEnabled: true,
   },
+  {
+    id: "sticker-49",
+    file: "49.png",
+    emoji: ["👆", "🚆"],
+    alt: "「道岔好！」",
+    tags: ["指差确认", "手指口呼", "铁路迷"],
+    isHug: false,
+    isEnabled: true,
+  },
 ];
 
 /**
