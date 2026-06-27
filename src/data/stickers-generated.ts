@@ -459,6 +459,33 @@ export const stickers: Sticker[] = [
     isHug: false,
     isEnabled: true,
   },
+   {
+    id: "sticker-51",
+    file: "51.png",
+    emoji: ["🫂", "🥰"],
+    alt: "与 Mario 贴贴",
+    tags: ["贴贴", "抱抱", "可爱"],
+    isHug: true,
+    isEnabled: true,
+  },
+   {
+    id: "sticker-52",
+    file: "52.png",
+    emoji: ["🫂", "🥰"],
+    alt: "与 Ayanami 贴贴",
+    tags: ["贴贴", "抱抱", "可爱"],
+    isHug: true,
+    isEnabled: true,
+  },
+   {
+    id: "sticker-53",
+    file: "53.png",
+    emoji: ["🫂", "🥰"],
+    alt: "与惠姐贴贴",
+    tags: ["贴贴", "抱抱", "可爱"],
+    isHug: true,
+    isEnabled: true,
+  },
 ];
 
 /**
