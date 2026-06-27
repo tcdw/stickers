@@ -4,7 +4,6 @@ import { Toaster } from "sonner";
 import Footer from "../../Footer";
 import StickerCardButton from "./StickerCardButton";
 import StickerFilter, { type StickerType } from "./StickerFilter";
-import { TELEGRAM_STICKER_URL } from "../../../data/stickers-generated";
 
 type OptimizedImage = {
   src: string;
@@ -57,7 +56,7 @@ function buildImageProps(image: OptimizedImage, alt: string, className: string):
 }
 
 export default function StickerPage({ banner, stickers }: Props) {
-  const [filterType, setFilterType] = useState<StickerType>("all");
+  const [filterType, setFilterType] = useState<StickerType>("normal");
 
   const { filteredStickers, filterOptions } = useMemo(() => {
     const normalCount = stickers.filter(s => !s.isHug).length;
